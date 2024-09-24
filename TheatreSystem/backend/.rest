@@ -1,0 +1,7 @@
+
+GET https://localhost:2425/shows
+###
+GET https://localhost:2425/Interstellar
+###
+GET https://localhost:2425/Shutter Island
+###

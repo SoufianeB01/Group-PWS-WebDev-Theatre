@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\soufi\\OneDrive - Hogeschool Rotterdam\\Informatica\\Jaar 2 semester 2\\Software Construction\\Projecten\\WebDev-Theatre\\TheatreSystem\\backend\\TheatreSystem.csproj": {}
+    "C:\\Users\\sunmi\\OneDrive\\Bureaublad\\school bs\\jaar 2\\web dev\\projct webdev\\WebDev-Theatre\\TheatreSystem\\backend\\TheatreSystem.csproj": {}
   },
   "projects": {
-    "C:\\Users\\soufi\\OneDrive - Hogeschool Rotterdam\\Informatica\\Jaar 2 semester 2\\Software Construction\\Projecten\\WebDev-Theatre\\TheatreSystem\\backend\\TheatreSystem.csproj": {
+    "C:\\Users\\sunmi\\OneDrive\\Bureaublad\\school bs\\jaar 2\\web dev\\projct webdev\\WebDev-Theatre\\TheatreSystem\\backend\\TheatreSystem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\soufi\\OneDrive - Hogeschool Rotterdam\\Informatica\\Jaar 2 semester 2\\Software Construction\\Projecten\\WebDev-Theatre\\TheatreSystem\\backend\\TheatreSystem.csproj",
+        "projectUniqueName": "C:\\Users\\sunmi\\OneDrive\\Bureaublad\\school bs\\jaar 2\\web dev\\projct webdev\\WebDev-Theatre\\TheatreSystem\\backend\\TheatreSystem.csproj",
         "projectName": "TheatreSystem",
-        "projectPath": "C:\\Users\\soufi\\OneDrive - Hogeschool Rotterdam\\Informatica\\Jaar 2 semester 2\\Software Construction\\Projecten\\WebDev-Theatre\\TheatreSystem\\backend\\TheatreSystem.csproj",
-        "packagesPath": "C:\\Users\\soufi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\soufi\\OneDrive - Hogeschool Rotterdam\\Informatica\\Jaar 2 semester 2\\Software Construction\\Projecten\\WebDev-Theatre\\TheatreSystem\\backend\\obj\\",
+        "projectPath": "C:\\Users\\sunmi\\OneDrive\\Bureaublad\\school bs\\jaar 2\\web dev\\projct webdev\\WebDev-Theatre\\TheatreSystem\\backend\\TheatreSystem.csproj",
+        "packagesPath": "C:\\Users\\sunmi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\sunmi\\OneDrive\\Bureaublad\\school bs\\jaar 2\\web dev\\projct webdev\\WebDev-Theatre\\TheatreSystem\\backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\soufi\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\sunmi\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -58,7 +56,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.410\\RuntimeIdentifierGraph.json"
         }
       }
     }
