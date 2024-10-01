@@ -1,4 +1,4 @@
-namespace TheatreReservationSystem.Models
+namespace TheatreSystem.Models
 {
     public class User
     {

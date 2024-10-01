@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\soufi\\OneDrive - Hogeschool Rotterdam\\Informatica\\Jaar 2 semester 2\\Software Construction\\Projecten\\WebDev-Theatre\\TheatreSystem\\TheatreSystem.csproj": {}
+    "C:\\Users\\soufi\\OneDrive - Hogeschool Rotterdam\\Informatica\\Jaar 2 semester 2\\Software Construction\\Projecten\\WebDev-Theatre\\TheatreSystem\\TheatreSystem.csproj": {}
   },
   "projects": {
-    "c:\\Users\\soufi\\OneDrive - Hogeschool Rotterdam\\Informatica\\Jaar 2 semester 2\\Software Construction\\Projecten\\WebDev-Theatre\\TheatreSystem\\TheatreSystem.csproj": {
+    "C:\\Users\\soufi\\OneDrive - Hogeschool Rotterdam\\Informatica\\Jaar 2 semester 2\\Software Construction\\Projecten\\WebDev-Theatre\\TheatreSystem\\TheatreSystem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\soufi\\OneDrive - Hogeschool Rotterdam\\Informatica\\Jaar 2 semester 2\\Software Construction\\Projecten\\WebDev-Theatre\\TheatreSystem\\TheatreSystem.csproj",
+        "projectUniqueName": "C:\\Users\\soufi\\OneDrive - Hogeschool Rotterdam\\Informatica\\Jaar 2 semester 2\\Software Construction\\Projecten\\WebDev-Theatre\\TheatreSystem\\TheatreSystem.csproj",
         "projectName": "TheatreSystem",
-        "projectPath": "c:\\Users\\soufi\\OneDrive - Hogeschool Rotterdam\\Informatica\\Jaar 2 semester 2\\Software Construction\\Projecten\\WebDev-Theatre\\TheatreSystem\\TheatreSystem.csproj",
+        "projectPath": "C:\\Users\\soufi\\OneDrive - Hogeschool Rotterdam\\Informatica\\Jaar 2 semester 2\\Software Construction\\Projecten\\WebDev-Theatre\\TheatreSystem\\TheatreSystem.csproj",
         "packagesPath": "C:\\Users\\soufi\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\soufi\\OneDrive - Hogeschool Rotterdam\\Informatica\\Jaar 2 semester 2\\Software Construction\\Projecten\\WebDev-Theatre\\TheatreSystem\\obj\\",
+        "outputPath": "C:\\Users\\soufi\\OneDrive - Hogeschool Rotterdam\\Informatica\\Jaar 2 semester 2\\Software Construction\\Projecten\\WebDev-Theatre\\TheatreSystem\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\soufi\\AppData\\Roaming\\NuGet\\NuGet.Config",

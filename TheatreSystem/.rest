@@ -1,0 +1,38 @@
+POST http://localhost:5006/api/login
+Content-Type: application/json
+
+{
+    "username": "Person1",
+    "password": "wachtwoord123"
+}
+###
+
+POST http://localhost:5006/api/register
+Content-Type: application/json
+
+{
+    "username": "Person1",
+    "password": "wachtwoord123"
+}
+###
+
+POST http://localhost:5006/api/register
+Content-Type: application/json
+
+{
+    "username": "Person2",
+    "password": "wachtwoord123"
+}
+###
+
+POST http://localhost:5006/api/register
+Content-Type: application/json
+
+{
+    "username": "Person3",
+    "password": "wachtwoord123"
+}
+###
+
+GET http://localhost:5006/api/register/users
+###

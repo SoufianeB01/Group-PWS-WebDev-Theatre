@@ -1,32 +1,32 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
+using TheatreSystem.Models;
 
 namespace TheatreSystem.Controllers
 {
-    [Route("[controller]")]
-    public class RegisterController : Controller
+    [Route("api/register")]
+    public class RegisterController : ControllerBase
     {
-        private readonly ILogger<RegisterController> _logger;
+        public static List<User> Users = new List<User>();
 
-        public RegisterController(ILogger<RegisterController> logger)
+        [HttpPost]
+        public IActionResult Register([FromBody] User newUser)
         {
-            _logger = logger;
+            if (Users.Exists(u => u.Username == newUser.Username))
+            {
+                return BadRequest("Username already exists.");
+            }
+
+            newUser.Id = Users.Count + 1;
+            Users.Add(newUser);
+            return Ok("User registered successfully.");
         }
 
-        public IActionResult Index()
+        [HttpGet("users")]
+        public IActionResult GetAllUsers()
         {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View("Error!");
+            return Ok(Users);
         }
     }
+
 }
