@@ -8,19 +8,19 @@
     "net7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\soufi\\.nuget\\packages\\": {}
+    "C:\\Users\\pvspi\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\soufi\\OneDrive - Hogeschool Rotterdam\\Informatica\\Jaar 2 semester 2\\Software Construction\\Projecten\\WebDev-Theatre\\TheatreSystem\\TheatreSystem.csproj",
+      "projectUniqueName": "C:\\Users\\pvspi\\OneDrive\\Bureaublad\\Webproject\\WebDev-Theatre\\TheatreSystem\\TheatreSystem.csproj",
       "projectName": "TheatreSystem",
-      "projectPath": "C:\\Users\\soufi\\OneDrive - Hogeschool Rotterdam\\Informatica\\Jaar 2 semester 2\\Software Construction\\Projecten\\WebDev-Theatre\\TheatreSystem\\TheatreSystem.csproj",
-      "packagesPath": "C:\\Users\\soufi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\soufi\\OneDrive - Hogeschool Rotterdam\\Informatica\\Jaar 2 semester 2\\Software Construction\\Projecten\\WebDev-Theatre\\TheatreSystem\\obj\\",
+      "projectPath": "C:\\Users\\pvspi\\OneDrive\\Bureaublad\\Webproject\\WebDev-Theatre\\TheatreSystem\\TheatreSystem.csproj",
+      "packagesPath": "C:\\Users\\pvspi\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\pvspi\\OneDrive\\Bureaublad\\Webproject\\WebDev-Theatre\\TheatreSystem\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\soufi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\pvspi\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -64,7 +64,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   }

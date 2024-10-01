@@ -1,0 +1,21 @@
+
+GET https://localhost:5000/movie/seats/all
+
+###
+POST https://localhost:5000/movie/seats/claim HTTP/1.1
+Content-Type: application/json
+
+{
+  "row": 0,
+  "col": 0
+}
+
+
+###
+POST https://localhost:5000/movie/seats/release HTTP/1.1
+Content-Type: application/json
+
+{
+  "row": 0,
+  "col": 0
+}
