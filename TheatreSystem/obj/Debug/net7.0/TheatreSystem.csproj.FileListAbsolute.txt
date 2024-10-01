@@ -1,0 +1,6 @@
+c:\Users\soufi\OneDrive - Hogeschool Rotterdam\Informatica\Jaar 2 semester 2\Software Construction\Projecten\WebDev-Theatre\TheatreSystem\obj\Debug\net7.0\TheatreSystem.csproj.AssemblyReference.cache
+c:\Users\soufi\OneDrive - Hogeschool Rotterdam\Informatica\Jaar 2 semester 2\Software Construction\Projecten\WebDev-Theatre\TheatreSystem\obj\Debug\net7.0\TheatreSystem.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\soufi\OneDrive - Hogeschool Rotterdam\Informatica\Jaar 2 semester 2\Software Construction\Projecten\WebDev-Theatre\TheatreSystem\obj\Debug\net7.0\TheatreSystem.AssemblyInfoInputs.cache
+c:\Users\soufi\OneDrive - Hogeschool Rotterdam\Informatica\Jaar 2 semester 2\Software Construction\Projecten\WebDev-Theatre\TheatreSystem\obj\Debug\net7.0\TheatreSystem.AssemblyInfo.cs
+c:\Users\soufi\OneDrive - Hogeschool Rotterdam\Informatica\Jaar 2 semester 2\Software Construction\Projecten\WebDev-Theatre\TheatreSystem\obj\Debug\net7.0\TheatreSystem.csproj.CoreCompileInputs.cache
+c:\Users\soufi\OneDrive - Hogeschool Rotterdam\Informatica\Jaar 2 semester 2\Software Construction\Projecten\WebDev-Theatre\TheatreSystem\obj\Debug\net7.0\TheatreSystem.MvcApplicationPartsAssemblyInfo.cache
