@@ -19,3 +19,45 @@ Content-Type: application/json
   "row": 0,
   "col": 0
 }
+
+
+### Get all shows
+GET https://localhost:5000/api/TheaterShow
+Accept: application/json
+
+###
+
+### Get a specific show by ID
+GET https://localhost:5000/api/TheaterShow/1
+Accept: application/json
+
+###
+
+### Create a new show
+POST https://localhost:5000/api/TheaterShow
+Content-Type: application/json
+
+{
+  "title": "New Show",
+  "description": "This is a new theater show.",
+  "price": 45.50,
+  "venueID": 2
+}
+
+###
+
+### Update an existing show
+PUT https://localhost:5000/api/TheaterShow/1
+Content-Type: application/json
+
+{
+  "title": "Updated Show Title",
+  "description": "Updated show description",
+  "price": 50.00,
+  "venueID": 2
+}
+
+###
+
+### Delete a show
+DELETE https://localhost:5000/api/TheaterShow/1
