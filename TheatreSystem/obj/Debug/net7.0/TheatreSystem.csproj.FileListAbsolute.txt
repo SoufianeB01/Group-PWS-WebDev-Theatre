@@ -1,4 +1,3 @@
-c:\Users\soufi\OneDrive - Hogeschool Rotterdam\Informatica\Jaar 2 semester 2\Software Construction\Projecten\WebDev-Theatre\TheatreSystem\obj\Debug\net7.0\TheatreSystem.csproj.AssemblyReference.cache
 c:\Users\soufi\OneDrive - Hogeschool Rotterdam\Informatica\Jaar 2 semester 2\Software Construction\Projecten\WebDev-Theatre\TheatreSystem\obj\Debug\net7.0\TheatreSystem.GeneratedMSBuildEditorConfig.editorconfig
 c:\Users\soufi\OneDrive - Hogeschool Rotterdam\Informatica\Jaar 2 semester 2\Software Construction\Projecten\WebDev-Theatre\TheatreSystem\obj\Debug\net7.0\TheatreSystem.AssemblyInfoInputs.cache
 c:\Users\soufi\OneDrive - Hogeschool Rotterdam\Informatica\Jaar 2 semester 2\Software Construction\Projecten\WebDev-Theatre\TheatreSystem\obj\Debug\net7.0\TheatreSystem.AssemblyInfo.cs
@@ -24,3 +23,4 @@ C:\Users\soufi\OneDrive - Hogeschool Rotterdam\Informatica\Jaar 2 semester 2\Sof
 C:\Users\soufi\OneDrive - Hogeschool Rotterdam\Informatica\Jaar 2 semester 2\Software Construction\Projecten\WebDev-Theatre\TheatreSystem\obj\Debug\net7.0\TheatreSystem.pdb
 C:\Users\soufi\OneDrive - Hogeschool Rotterdam\Informatica\Jaar 2 semester 2\Software Construction\Projecten\WebDev-Theatre\TheatreSystem\obj\Debug\net7.0\TheatreSystem.genruntimeconfig.cache
 C:\Users\soufi\OneDrive - Hogeschool Rotterdam\Informatica\Jaar 2 semester 2\Software Construction\Projecten\WebDev-Theatre\TheatreSystem\obj\Debug\net7.0\ref\TheatreSystem.dll
+C:\Users\soufi\OneDrive - Hogeschool Rotterdam\Informatica\Jaar 2 semester 2\Software Construction\Projecten\WebDev-Theatre\TheatreSystem\obj\Debug\net7.0\TheatreSystem.sourcelink.json

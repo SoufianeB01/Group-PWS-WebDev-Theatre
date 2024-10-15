@@ -34,5 +34,5 @@ Content-Type: application/json
 }
 ###
 
-GET http://localhost:5006/api/register/users
+GET http://localhost:5006/api/login/users
 ###

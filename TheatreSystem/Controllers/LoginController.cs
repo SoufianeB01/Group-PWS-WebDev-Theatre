@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using TheatreSystem.Services;
 using TheatreSystem.Models;
+using TheatreSystem.Services;
 
 namespace TheatreSystem.Controllers
 {
@@ -15,28 +15,36 @@ namespace TheatreSystem.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login([FromBody] LoginRequest loginRequest)
+        public IActionResult Login([FromBody] User loginUser)
         {
-            if (_userService.ValidateAdminCredentials(loginRequest.Username, loginRequest.Password))
+            var user = _userService.GetUserByUsername(loginUser.Username);
+            
+            if (user == null)
             {
-                _userService.RegisterSession(loginRequest.Username);
-                return Ok("Login successful.");
+                return BadRequest("User not found.");
             }
-
-            return BadRequest("Invalid username or password.");
+            
+            if (user.Password != loginUser.Password)
+            {
+                return Unauthorized("Invalid password.");
+            }
+            
+            _userService.RegisterSession(loginUser.Username);
+            return Ok($"Welcome, {loginUser.Username}!");
         }
 
         [HttpPost("logout")]
         public IActionResult Logout()
         {
-            _userService.Logout();
+            _userService.Logout();  
             return Ok("Logged out successfully.");
         }
-    }
 
-    public class LoginRequest
-    {
-        public string Username { get; set; }
-        public string Password { get; set; }
+        [HttpGet("users")]
+        public IActionResult GetUsers()
+        {
+            var users = _userService.GetAllUsers();
+            return Ok(users);
+        }
     }
 }
