@@ -1,4 +1,3 @@
-public record Seat(int Row, int Col);
 
 public class SeatData
 {

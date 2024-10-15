@@ -5,7 +5,6 @@ C:\Users\pvspi\OneDrive\Bureaublad\Webproject\WebDev-Theatre\TheatreSystem\bin\D
 C:\Users\pvspi\OneDrive\Bureaublad\Webproject\WebDev-Theatre\TheatreSystem\bin\Debug\net7.0\TheatreSystem.runtimeconfig.json
 C:\Users\pvspi\OneDrive\Bureaublad\Webproject\WebDev-Theatre\TheatreSystem\bin\Debug\net7.0\TheatreSystem.dll
 C:\Users\pvspi\OneDrive\Bureaublad\Webproject\WebDev-Theatre\TheatreSystem\bin\Debug\net7.0\TheatreSystem.pdb
-C:\Users\pvspi\OneDrive\Bureaublad\Webproject\WebDev-Theatre\TheatreSystem\obj\Debug\net7.0\TheatreSystem.csproj.AssemblyReference.cache
 C:\Users\pvspi\OneDrive\Bureaublad\Webproject\WebDev-Theatre\TheatreSystem\obj\Debug\net7.0\TheatreSystem.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\pvspi\OneDrive\Bureaublad\Webproject\WebDev-Theatre\TheatreSystem\obj\Debug\net7.0\TheatreSystem.AssemblyInfoInputs.cache
 C:\Users\pvspi\OneDrive\Bureaublad\Webproject\WebDev-Theatre\TheatreSystem\obj\Debug\net7.0\TheatreSystem.AssemblyInfo.cs
@@ -24,3 +23,4 @@ C:\Users\pvspi\OneDrive\Bureaublad\Webproject\WebDev-Theatre\TheatreSystem\obj\D
 C:\Users\pvspi\OneDrive\Bureaublad\Webproject\WebDev-Theatre\TheatreSystem\obj\Debug\net7.0\TheatreSystem.pdb
 C:\Users\pvspi\OneDrive\Bureaublad\Webproject\WebDev-Theatre\TheatreSystem\obj\Debug\net7.0\TheatreSystem.genruntimeconfig.cache
 C:\Users\pvspi\OneDrive\Bureaublad\Webproject\WebDev-Theatre\TheatreSystem\obj\Debug\net7.0\ref\TheatreSystem.dll
+C:\Users\pvspi\OneDrive\Bureaublad\Webproject\WebDev-Theatre\TheatreSystem\obj\Debug\net7.0\TheatreSystem.sourcelink.json
