@@ -49,3 +49,29 @@ C:\Users\sunmi\OneDrive\Bureaublad\school bs\jaar 2\web dev\projct webdev\WebDev
 C:\Users\sunmi\OneDrive\Bureaublad\school bs\jaar 2\web dev\projct webdev\WebDev-Theatre\TheatreSystem\obj\Debug\net7.0\TheatreSystem.pdb
 C:\Users\sunmi\OneDrive\Bureaublad\school bs\jaar 2\web dev\projct webdev\WebDev-Theatre\TheatreSystem\obj\Debug\net7.0\TheatreSystem.genruntimeconfig.cache
 C:\Users\sunmi\OneDrive\Bureaublad\school bs\jaar 2\web dev\projct webdev\WebDev-Theatre\TheatreSystem\obj\Debug\net7.0\ref\TheatreSystem.dll
+C:\Users\soufi\OneDrive - Hogeschool Rotterdam\Informatica\Jaar 2 semester 2\Software Construction\Projecten\WebDev-Theatre\TheatreSystem\bin\Debug\net7.0\appsettings.Development.json
+C:\Users\soufi\OneDrive - Hogeschool Rotterdam\Informatica\Jaar 2 semester 2\Software Construction\Projecten\WebDev-Theatre\TheatreSystem\bin\Debug\net7.0\appsettings.json
+C:\Users\soufi\OneDrive - Hogeschool Rotterdam\Informatica\Jaar 2 semester 2\Software Construction\Projecten\WebDev-Theatre\TheatreSystem\bin\Debug\net7.0\TheatreSystem.exe
+C:\Users\soufi\OneDrive - Hogeschool Rotterdam\Informatica\Jaar 2 semester 2\Software Construction\Projecten\WebDev-Theatre\TheatreSystem\bin\Debug\net7.0\TheatreSystem.deps.json
+C:\Users\soufi\OneDrive - Hogeschool Rotterdam\Informatica\Jaar 2 semester 2\Software Construction\Projecten\WebDev-Theatre\TheatreSystem\bin\Debug\net7.0\TheatreSystem.runtimeconfig.json
+C:\Users\soufi\OneDrive - Hogeschool Rotterdam\Informatica\Jaar 2 semester 2\Software Construction\Projecten\WebDev-Theatre\TheatreSystem\bin\Debug\net7.0\TheatreSystem.dll
+C:\Users\soufi\OneDrive - Hogeschool Rotterdam\Informatica\Jaar 2 semester 2\Software Construction\Projecten\WebDev-Theatre\TheatreSystem\bin\Debug\net7.0\TheatreSystem.pdb
+C:\Users\soufi\OneDrive - Hogeschool Rotterdam\Informatica\Jaar 2 semester 2\Software Construction\Projecten\WebDev-Theatre\TheatreSystem\obj\Debug\net7.0\TheatreSystem.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\soufi\OneDrive - Hogeschool Rotterdam\Informatica\Jaar 2 semester 2\Software Construction\Projecten\WebDev-Theatre\TheatreSystem\obj\Debug\net7.0\TheatreSystem.AssemblyInfoInputs.cache
+C:\Users\soufi\OneDrive - Hogeschool Rotterdam\Informatica\Jaar 2 semester 2\Software Construction\Projecten\WebDev-Theatre\TheatreSystem\obj\Debug\net7.0\TheatreSystem.AssemblyInfo.cs
+C:\Users\soufi\OneDrive - Hogeschool Rotterdam\Informatica\Jaar 2 semester 2\Software Construction\Projecten\WebDev-Theatre\TheatreSystem\obj\Debug\net7.0\TheatreSystem.csproj.CoreCompileInputs.cache
+C:\Users\soufi\OneDrive - Hogeschool Rotterdam\Informatica\Jaar 2 semester 2\Software Construction\Projecten\WebDev-Theatre\TheatreSystem\obj\Debug\net7.0\TheatreSystem.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\soufi\OneDrive - Hogeschool Rotterdam\Informatica\Jaar 2 semester 2\Software Construction\Projecten\WebDev-Theatre\TheatreSystem\obj\Debug\net7.0\TheatreSystem.sourcelink.json
+C:\Users\soufi\OneDrive - Hogeschool Rotterdam\Informatica\Jaar 2 semester 2\Software Construction\Projecten\WebDev-Theatre\TheatreSystem\obj\Debug\net7.0\staticwebassets.build.json
+C:\Users\soufi\OneDrive - Hogeschool Rotterdam\Informatica\Jaar 2 semester 2\Software Construction\Projecten\WebDev-Theatre\TheatreSystem\obj\Debug\net7.0\staticwebassets.development.json
+C:\Users\soufi\OneDrive - Hogeschool Rotterdam\Informatica\Jaar 2 semester 2\Software Construction\Projecten\WebDev-Theatre\TheatreSystem\obj\Debug\net7.0\staticwebassets\msbuild.TheatreSystem.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\soufi\OneDrive - Hogeschool Rotterdam\Informatica\Jaar 2 semester 2\Software Construction\Projecten\WebDev-Theatre\TheatreSystem\obj\Debug\net7.0\staticwebassets\msbuild.build.TheatreSystem.props
+C:\Users\soufi\OneDrive - Hogeschool Rotterdam\Informatica\Jaar 2 semester 2\Software Construction\Projecten\WebDev-Theatre\TheatreSystem\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.TheatreSystem.props
+C:\Users\soufi\OneDrive - Hogeschool Rotterdam\Informatica\Jaar 2 semester 2\Software Construction\Projecten\WebDev-Theatre\TheatreSystem\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.TheatreSystem.props
+C:\Users\soufi\OneDrive - Hogeschool Rotterdam\Informatica\Jaar 2 semester 2\Software Construction\Projecten\WebDev-Theatre\TheatreSystem\obj\Debug\net7.0\staticwebassets.pack.json
+C:\Users\soufi\OneDrive - Hogeschool Rotterdam\Informatica\Jaar 2 semester 2\Software Construction\Projecten\WebDev-Theatre\TheatreSystem\obj\Debug\net7.0\scopedcss\bundle\TheatreSystem.styles.css
+C:\Users\soufi\OneDrive - Hogeschool Rotterdam\Informatica\Jaar 2 semester 2\Software Construction\Projecten\WebDev-Theatre\TheatreSystem\obj\Debug\net7.0\TheatreSystem.dll
+C:\Users\soufi\OneDrive - Hogeschool Rotterdam\Informatica\Jaar 2 semester 2\Software Construction\Projecten\WebDev-Theatre\TheatreSystem\obj\Debug\net7.0\refint\TheatreSystem.dll
+C:\Users\soufi\OneDrive - Hogeschool Rotterdam\Informatica\Jaar 2 semester 2\Software Construction\Projecten\WebDev-Theatre\TheatreSystem\obj\Debug\net7.0\TheatreSystem.pdb
+C:\Users\soufi\OneDrive - Hogeschool Rotterdam\Informatica\Jaar 2 semester 2\Software Construction\Projecten\WebDev-Theatre\TheatreSystem\obj\Debug\net7.0\TheatreSystem.genruntimeconfig.cache
+C:\Users\soufi\OneDrive - Hogeschool Rotterdam\Informatica\Jaar 2 semester 2\Software Construction\Projecten\WebDev-Theatre\TheatreSystem\obj\Debug\net7.0\ref\TheatreSystem.dll
