@@ -61,3 +61,43 @@ Content-Type: application/json
 
 ### Delete a show
 DELETE https://localhost:5000/api/TheaterShow/1
+###
+
+POST http://localhost:5000/api/login
+Content-Type: application/json
+
+{
+    "username": "Person1",
+    "password": "wachtwoord123"
+}
+###
+
+POST http://localhost:5000/api/register
+Content-Type: application/json
+
+{
+    "username": "Person1",
+    "password": "wachtwoord123"
+}
+###
+
+POST http://localhost:5000/api/register
+Content-Type: application/json
+
+{
+    "username": "Person2",
+    "password": "wachtwoord123"
+}
+###
+
+POST http://localhost:5000/api/register
+Content-Type: application/json
+
+{
+    "username": "Person3",
+    "password": "wachtwoord123"
+}
+###
+
+GET http://localhost:5000/api/login/users
+###

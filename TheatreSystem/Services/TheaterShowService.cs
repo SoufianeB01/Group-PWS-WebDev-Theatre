@@ -1,4 +1,6 @@
+#pragma warning disable CA1050 // Declare types in namespaces
 public class TheaterShowService : ITheaterShowService
+#pragma warning restore CA1050 // Declare types in namespaces
 {
     private readonly List<TheaterShow> _shows;
     private readonly List<TheaterShowDate> _showDates;
