@@ -5,8 +5,8 @@ services:
     container_name: my_postgres_db
     restart: always
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 123
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
       POSTGRES_DB: mydatabase
     ports:
       - "5532:5432"  # Expose port 5432 from the container to port 5532 on your host
