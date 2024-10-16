@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "TCRqO2FHlMT8mPLpKogu/jSJcVDx2X/SAlv1GKTeoB+gGPmT+nMldKujVTj+7S6oqytmy/eJmMcDJqXDpZrxTA==",
+  "dgSpecHash": "TPOVqEvPZQA=",
   "success": true,
-  "projectFilePath": "C:\\Users\\pvspi\\OneDrive\\Bureaublad\\Webproject\\WebDev-Theatre\\TheatreSystem\\TheatreSystem.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\soufi\\OneDrive - Hogeschool Rotterdam\\Informatica\\Jaar 2 semester 2\\Software Construction\\Projecten\\WebDev-Theatre\\TheatreSystem\\TheatreSystem.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\soufi\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.20\\microsoft.netcore.app.ref.7.0.20.nupkg.sha512",
+    "C:\\Users\\soufi\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.20\\microsoft.windowsdesktop.app.ref.7.0.20.nupkg.sha512",
+    "C:\\Users\\soufi\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.20\\microsoft.aspnetcore.app.ref.7.0.20.nupkg.sha512",
+    "C:\\Users\\soufi\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\7.0.20\\microsoft.netcore.app.host.win-x64.7.0.20.nupkg.sha512"
+  ],
   "logs": []
 }

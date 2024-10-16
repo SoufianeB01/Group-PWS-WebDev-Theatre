@@ -19,3 +19,133 @@ Content-Type: application/json
   "row": 0,
   "col": 0
 }
+
+
+### Get all shows
+GET https://localhost:5000/api/TheaterShow
+Accept: application/json
+
+###
+
+### Get a specific show by ID
+GET https://localhost:5000/api/TheaterShow/1
+Accept: application/json
+
+###
+
+### Create a new show
+POST https://localhost:5000/api/TheaterShow
+Content-Type: application/json
+
+{
+  "title": "New Show",
+  "description": "This is a new theater show.",
+  "price": 45.50,
+  "venueID": 2
+}
+
+###
+
+### Update an existing show
+PUT https://localhost:5000/api/TheaterShow/1
+Content-Type: application/json
+
+{
+  "title": "Updated Show Title",
+  "description": "Updated show description",
+  "price": 50.00,
+  "venueID": 2
+}
+
+###
+
+### Delete a show
+DELETE https://localhost:5000/api/TheaterShow/1
+###
+
+
+### Requests for Authorization
+
+### Register User Person1
+POST https://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+    "username": "Person1",
+    "password": "password1"
+}
+
+###
+
+### Register User Person2
+POST https://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+    "username": "Person2",
+    "password": "password2"
+}
+
+###
+
+### Register User Person3
+POST https://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+    "username": "Person3",
+    "password": "password3"
+}
+
+###
+
+### Login as Person1
+POST https://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+    "username": "Person1",
+    "password": "password1"
+}
+
+###
+
+### Login as Person2
+POST https://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+    "username": "Person2",
+    "password": "password2"
+}
+
+###
+
+### Login as Person3
+POST https://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+    "username": "Person3",
+    "password": "password3"
+}
+
+###
+
+### Attempt to login with wrong password
+POST https://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+    "username": "Person1",
+    "password": "wrongpassword"
+}
+
+###
+
+### Logout User
+POST https://localhost:5000/api/auth/logout
+
+###
+
+
