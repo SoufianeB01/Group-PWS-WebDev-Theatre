@@ -101,3 +101,32 @@ Content-Type: application/json
 
 GET http://localhost:5000/api/login/users
 ###
+
+### Register a new user
+POST https://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+    "username": "NewUser1",
+    "password": "securepassword123"
+}
+
+###
+
+### Login
+POST https://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+    "username": "NewUser1",
+    "password": "securepassword123"
+}
+
+###
+
+POST https://localhost:5000/api/auth/logout
+
+###
+
+GET https://localhost:5000/api/auth/users
+###

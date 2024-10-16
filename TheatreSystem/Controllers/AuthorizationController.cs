@@ -4,17 +4,29 @@ using TheatreSystem.Services;
 
 namespace TheatreSystem.Controllers
 {
-    [Route("api/login")]
-    public class LoginController : ControllerBase
+    [Route("api/auth")]
+    public class AuthorizationController : ControllerBase
     {
         private readonly IUserService _userService;
 
-        public LoginController(IUserService userService)
+        public AuthorizationController(IUserService userService)
         {
             _userService = userService;
         }
 
-        [HttpPost]
+        [HttpPost("register")]
+        public IActionResult Register([FromBody] User newUser)
+        {
+            if (_userService.UserExists(newUser.Username))
+            {
+                return BadRequest("Username already exists.");
+            }
+
+            _userService.RegisterNewUser(newUser);
+            return Ok("User registered successfully.");
+        }
+
+        [HttpPost("login")]
         public IActionResult Login([FromBody] User loginUser)
         {
             var user = _userService.GetUserByUsername(loginUser.Username);
