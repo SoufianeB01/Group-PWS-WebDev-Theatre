@@ -6,21 +6,35 @@ using System.Threading.Tasks;
 
 public class ReservationController : ControllerBase
 {
-    // private ReservationService _reservationService;
+    private IReservationService _reservationService;
 
-    // public ReservationController(ReservationService reservationService)
-    // {
-    //     _reservationService = reservationService;
-    // }
+    public ReservationController(IReservationService reservationService)
+    {
+        _reservationService = reservationService;
+    }
 
     [HttpPost()]
-    public async Task<IActionResult> ReserveSeat([FromBody] CustomerReservationRequest  customerwithreservation)
+    public async Task<IActionResult> ReserveSeat([FromBody] CustomerReservationRequest customerwithreservation, [FromQuery] int movieId)
     {
-        if(customerwithreservation == null) return BadRequest("Invalid request");
+        if (customerwithreservation == null) return BadRequest("Invalid request");
+
         var customer = customerwithreservation.Customer;
         var reservation = customerwithreservation.Reservation;
-        Console.WriteLine(reservation.CustomerID);
-        return this.Ok(customer);
+
+        // Use movieId as needed
+        Console.WriteLine("Movie ID: " + movieId);
+        Console.WriteLine("Customer ID: " + reservation.CustomerID);
+        _reservationService.ReserveSeat(customerwithreservation, movieId);
+        return this.Ok(reservation);
     }
+
+    [HttpGet()]
+    public async Task<IActionResult> GetReservations()
+    {
+        var reservations = _reservationService.GetReservations();
+        Console.WriteLine("Reservations: " + reservations.Count);
+        return this.Ok(reservations);
+    }
+
 
 }
