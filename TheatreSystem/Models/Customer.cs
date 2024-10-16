@@ -5,3 +5,8 @@ public class Customer
     public string LastName { get; set; }
     public string Email { get; set; }
 }
+public class CustomerReservationRequest
+{
+    public Customer Customer { get; set; }
+    public Reservation Reservation { get; set; }
+}

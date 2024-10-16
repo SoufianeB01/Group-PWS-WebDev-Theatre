@@ -8,5 +8,14 @@ public class Reservation
     public List<Seat> tickets { get; set; }
     public int amountOfTickets { get; set; }
     public bool used { get; set; }
+
+    public Reservation(int ReservationID, int CustomerID, TheaterShowDate TheatereShowDate, List<Seat> tickets, int amountOfTickets, bool used)
+    {
+        this.ReservationID = ReservationID;
+        this.CustomerID = CustomerID;
+        this.TheatereShowDate = TheatereShowDate;
+        this.tickets = tickets;
+        this.amountOfTickets = amountOfTickets;
+        this.used = used;
+    }
 }
-//Reservation class is aangepast want THeathershowdte is een class en geen datetime object
