@@ -1,33 +1,46 @@
-using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
 
-[Authorize(Roles = "Admin")]
+
+    [Authorize(Roles = "Admin")]
 [Route("api/[controller]")]
 [ApiController]
-public class ReservationsController : ControllerBase
+
+public class Reservation_managegerController:ControllerBase
 {
-    private readonly AppDbContext _context;
+    private readonly  AppDbContext _context;
 
-    public ReservationsController(AppDbContext context) => _context = context;
+    public ReservationsController(AppDbContext context)
+    {
+        _context = context;
+    }
+  
 
-    // GET: api/Reservations
-    [HttpGet]
+
+ [HttpGet]
     public async Task<IActionResult> GetReservations([FromQuery] int? showId, [FromQuery] DateTime? date, [FromQuery] string search)
     {
-        var reservations = await _context.Reservations
-            .Include(r => r.Show)
-            .Where(r => (!showId.HasValue || r.ShowId == showId) &&
-                        (!date.HasValue || r.ReservationDate.Date == date.Value.Date) &&
-                        (string.IsNullOrEmpty(search) || r.Email.Contains(search) || r.ReservationNumber.Contains(search)))
-            .ToListAsync();
-
+        var reservationsQuery = _context.Reservations.AsQueryable();       
+        if (showId.HasValue)
+        {
+            reservationsQuery = reservationsQuery.Where(x => x.ShowId == showId.Value);
+        }
+        if (date.HasValue)
+        {
+            reservationsQuery = reservationsQuery.Where(x => x.ReservationDate.Date == date.Value.Date);
+        }
+        if (!string.IsNullOrEmpty(search))
+        {
+            reservationsQuery = reservationsQuery.Where(x => x.Email.Contains(search) || x.ReservationNumber.Contains(search));
+        }
+        var reservations = await reservationsQuery.ToListAsync();
         return Ok(reservations);
     }
 
     // PUT: api/Reservations/{id}/mark-as-used
-    [HttpPut("{id}/mark-as-used")]
+[HttpPut("{id}/mark-as-used")]
     public async Task<IActionResult> MarkAsUsed(int id)
     {
         var reservation = await _context.Reservations.FindAsync(id);
@@ -52,3 +65,10 @@ public class ReservationsController : ControllerBase
         return NoContent();
     }
 }
+
+
+
+
+
+
+
