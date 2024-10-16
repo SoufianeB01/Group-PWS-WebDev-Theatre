@@ -1,18 +1,17 @@
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.EntityFrameworkCore;
+using Microsoft;
 
-
-    [Authorize(Roles = "Admin")]
+[Authorize(Roles = "Admin")]
 [Route("api/[controller]")]
 [ApiController]
 
 public class Reservation_managegerController:ControllerBase
 {
-    private readonly  AppDbContext _context;
+    private readonly  List<Reservation> _context;
 
-    public ReservationsController(AppDbContext context)
+    public Reservation_managegerController(List<Reservation> context)
     {
         _context = context;
     }
@@ -22,20 +21,21 @@ public class Reservation_managegerController:ControllerBase
  [HttpGet]
     public async Task<IActionResult> GetReservations([FromQuery] int? showId, [FromQuery] DateTime? date, [FromQuery] string search)
     {
-        var reservationsQuery = _context.Reservations.AsQueryable();       
+        var reservationsQuery = _context.AsQueryable();       
         if (showId.HasValue)
         {
-            reservationsQuery = reservationsQuery.Where(x => x.ShowId == showId.Value);
+            reservationsQuery = reservationsQuery.Where(x => x.TheatereShowDate.TheaterShowID == showId.Value);
         }
         if (date.HasValue)
         {
-            reservationsQuery = reservationsQuery.Where(x => x.ReservationDate.Date == date.Value.Date);
+            reservationsQuery = reservationsQuery.Where(x => x.TheatereShowDate.Date == date.Value.Date);
         }
         if (!string.IsNullOrEmpty(search))
         {
-            reservationsQuery = reservationsQuery.Where(x => x.Email.Contains(search) || x.ReservationNumber.Contains(search));
+            
+            reservationsQuery = reservationsQuery.Where(x => x.tickets.Any(x =>x.ToString().Contains(search)));
         }
-        var reservations = await reservationsQuery.ToListAsync();
+        var reservations = reservationsQuery.ToList();
         return Ok(reservations);
     }
 
@@ -43,11 +43,11 @@ public class Reservation_managegerController:ControllerBase
 [HttpPut("{id}/mark-as-used")]
     public async Task<IActionResult> MarkAsUsed(int id)
     {
-        var reservation = await _context.Reservations.FindAsync(id);
+        var reservation = _context.Find(x=> x.ReservationID == id);
         if (reservation == null) return NotFound();
 
-        reservation.IsUsed = true;
-        await _context.SaveChangesAsync();
+        reservation.used = true;
+        
 
         return NoContent();
     }
@@ -56,11 +56,11 @@ public class Reservation_managegerController:ControllerBase
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteReservation(int id)
     {
-        var reservation = await _context.Reservations.FindAsync(id);
+        var reservation =_context.Find(x=> x.ReservationID == id);
         if (reservation == null) return NotFound();
 
-        _context.Reservations.Remove(reservation);
-        await _context.SaveChangesAsync();
+        _context.Remove(reservation);
+        
 
         return NoContent();
     }
