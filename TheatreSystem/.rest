@@ -61,3 +61,16 @@ Content-Type: application/json
 
 ### Delete a show
 DELETE https://localhost:5000/api/TheaterShow/1
+
+### Get all shows
+GET http://localhost:5000/api/TheaterShow
+
+### Get show by ID
+GET http://localhost:5000/api/TheaterShow/1
+
+### Get filtered shows
+GET http://localhost:5000/api/TheaterShow/filter?id=1&title=Inception&description=thriller&venueId=1&startDate=2023-01-01&endDate=2023-12-31&sortBy=title&ascending=true
+
+### Create a new show
+POST http://localhost:5000/api/TheaterShow
+Content-Type: application/json

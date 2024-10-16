@@ -13,16 +13,14 @@ public class TheaterShowController : ControllerBase
         _showService = showService;
     }
 
-    // GET: api/TheaterShow
     [HttpGet]
     public IActionResult GetAllShows()
     {
         var shows = _showService.GetAllShows();
         return Ok(shows);
     }
-
-    // GET: api/TheaterShow/{id}
-    [HttpGet("{id}")]
+    
+   [HttpGet("{id}")]
     public IActionResult GetShowById(int id)
     {
         var show = _showService.GetShowById(id);
@@ -33,7 +31,21 @@ public class TheaterShowController : ControllerBase
         return Ok(show);
     }
 
-    // POST: api/TheaterShow
+    [HttpGet("filter")]
+    public IActionResult GetFilteredShows(
+        int? id,
+        string title = null,
+        string description = null,
+        int? venueId = null,
+        DateTime? startDate = null,
+        DateTime? endDate = null,
+        string sortBy = "title",
+        bool ascending = true)
+    {
+        var shows = _showService.GetFilteredShows(id, title, description, venueId, startDate, endDate, sortBy, ascending);
+        return Ok(shows);
+    }
+
     [HttpPost]
     public async Task<IActionResult> CreateShow([FromBody] TheaterShow newShow)
     {
@@ -41,7 +53,6 @@ public class TheaterShowController : ControllerBase
         return CreatedAtAction(nameof(GetShowById), new { id = newShow.TheaterShowID }, newShow);
     }
 
-    // PUT: api/TheaterShow/{id}
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateShow(int id, [FromBody] TheaterShow updatedShow)
     {
@@ -51,12 +62,11 @@ public class TheaterShowController : ControllerBase
             return NotFound($"Show with ID {id} not found.");
         }
 
-        updatedShow.TheaterShowID = id; // Ensure correct ID
+        updatedShow.TheaterShowID = id;
         await _showService.UpdateShow(updatedShow);
         return NoContent();
     }
 
-    // DELETE: api/TheaterShow/{id}
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteShow(int id)
     {
