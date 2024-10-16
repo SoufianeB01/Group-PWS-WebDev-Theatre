@@ -1,60 +1,54 @@
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
-using System.Linq;
-
-namespace Space1_5
+[Authorize(Roles = "Admin")]
+[Route("api/[controller]")]
+[ApiController]
+public class ReservationsController : ControllerBase
 {
-    
+    private readonly AppDbContext _context;
 
+    public ReservationsController(AppDbContext context) => _context = context;
 
-public class Reservation_managegerController{
-  
-  public List<Reservation> reservations{get;set;}
-  public List<Customer>customers{get;set;}
-  public Customer find_customer_email(int id)
-  {
-    var customer = customers.First(r=>r.CustomerId == id);
-    return customer;
-    
-  }
-  public void  SearchReservations(string email, int Reservationid)
+    // GET: api/Reservations
+    [HttpGet]
+    public async Task<IActionResult> GetReservations([FromQuery] int? showId, [FromQuery] DateTime? date, [FromQuery] string search)
     {
-     
-
-
-        if (!string.IsNullOrEmpty(email))
-        {
-            var customer = find_customer_email(Reservationid);
-            reservations = reservations.Where(r => r.CustomerID==customer.CustomerId).ToList();
-        }
-
-        if (!string.IsNullOrEmpty(Reservationid.ToString()))
-        {
-            reservations = reservations.Where(r => r.ReservationID==Reservationid).ToList();
-        }
-
-        if (reservations.Count() == 0)
-        {
-             Console.WriteLine("No matching reservations found.");
-        }
-
-
-        return Ok(reservations);
-    }
-    public void GetReservations(TheaterShow show, DateTime? date)
-    {
-        
-
-      
-    
-
-      
-        if (date.HasValue)
-        {
-            reservations = reservations.Where(r => r.TheatereShowDate.Date == date.Value.Date).ToList();
-        }
+        var reservations = await _context.Reservations
+            .Include(r => r.Show)
+            .Where(r => (!showId.HasValue || r.ShowId == showId) &&
+                        (!date.HasValue || r.ReservationDate.Date == date.Value.Date) &&
+                        (string.IsNullOrEmpty(search) || r.Email.Contains(search) || r.ReservationNumber.Contains(search)))
+            .ToListAsync();
 
         return Ok(reservations);
     }
 
-}
+    // PUT: api/Reservations/{id}/mark-as-used
+    [HttpPut("{id}/mark-as-used")]
+    public async Task<IActionResult> MarkAsUsed(int id)
+    {
+        var reservation = await _context.Reservations.FindAsync(id);
+        if (reservation == null) return NotFound();
+
+        reservation.IsUsed = true;
+        await _context.SaveChangesAsync();
+
+        return NoContent();
+    }
+
+    // DELETE: api/Reservations/{id}
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteReservation(int id)
+    {
+        var reservation = await _context.Reservations.FindAsync(id);
+        if (reservation == null) return NotFound();
+
+        _context.Reservations.Remove(reservation);
+        await _context.SaveChangesAsync();
+
+        return NoContent();
+    }
 }
