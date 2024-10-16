@@ -13,8 +13,8 @@ namespace TheatreSystem.Services
 
         public UserService()
         {
-            _Users = new List<User> ();
-            _loggedInUser = null; 
+            _Users = new List<User>();
+            _loggedInUser = null;
         }
 
         public bool IsUserLoggedIn()
@@ -24,16 +24,21 @@ namespace TheatreSystem.Services
 
         public void RegisterSession(string username)
         {
-            _loggedInUser = username;  
+            _loggedInUser = username;
         }
 
         public void Logout()
         {
-            _loggedInUser = null;  
+            _loggedInUser = null;
         }
 
         public void RegisterNewUser(User newUser)
         {
+            if (UserExists(newUser.Username))
+            {
+                return;
+            }
+
             newUser.Id = Guid.NewGuid();
             _Users.Add(newUser);
         }
@@ -62,5 +67,6 @@ namespace TheatreSystem.Services
         bool UserExists(string username);
         User GetUserByUsername(string username);
         List<User> GetAllUsers();
+        bool IsUserLoggedIn();
     }
 }

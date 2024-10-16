@@ -30,17 +30,22 @@ namespace TheatreSystem.Controllers
         public IActionResult Login([FromBody] User loginUser)
         {
             var user = _userService.GetUserByUsername(loginUser.Username);
-            
+
             if (user == null)
             {
                 return BadRequest("User not found.");
             }
-            
+
+            if (_userService.IsUserLoggedIn())
+            {
+                return BadRequest("User is already logged in.");
+            }
+
             if (user.Password != loginUser.Password)
             {
                 return Unauthorized("Invalid password.");
             }
-            
+
             _userService.RegisterSession(loginUser.Username);
             return Ok($"Welcome, {loginUser.Username}!");
         }
@@ -48,7 +53,12 @@ namespace TheatreSystem.Controllers
         [HttpPost("logout")]
         public IActionResult Logout()
         {
-            _userService.Logout();  
+            if (!_userService.IsUserLoggedIn())
+            {
+                return BadRequest("No user is logged in.");
+            }
+
+            _userService.Logout();
             return Ok("Logged out successfully.");
         }
 
