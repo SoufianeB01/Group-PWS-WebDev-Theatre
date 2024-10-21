@@ -39,7 +39,7 @@ public class Reservation_managegerController:ControllerBase
         return Ok(reservations);
     }
 
-    // PUT: api/Reservations/{id}/mark-as-used
+ 
 [HttpPut("{id}/mark-as-used")]
     public async Task<IActionResult> MarkAsUsed(int id)
     {
@@ -52,7 +52,7 @@ public class Reservation_managegerController:ControllerBase
         return NoContent();
     }
 
-    // DELETE: api/Reservations/{id}
+ 
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteReservation(int id)
     {
