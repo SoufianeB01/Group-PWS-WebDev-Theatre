@@ -3,22 +3,23 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft;
 
-[Authorize(Roles = "Admin")]
-[Route("api/[controller]")]
-[ApiController]
+
+[Route($"api/admin"),]
+
 
 public class Reservation_managegerController:ControllerBase
 {
     private readonly  List<Reservation> _context;
-
-    public Reservation_managegerController(List<Reservation> context)
+    private ISeatService _seatService;
+    public Reservation_managegerController(List<Reservation> context,ISeatService seatService)
     {
         _context = context;
+        _seatService = seatService;
     }
   
 
 
- [HttpGet]
+    [HttpGet]
     public async Task<IActionResult> GetReservations([FromQuery] int? showId, [FromQuery] DateTime? date, [FromQuery] string search)
     {
         var reservationsQuery = _context.AsQueryable();       
@@ -40,16 +41,20 @@ public class Reservation_managegerController:ControllerBase
     }
 
  
-[HttpPut("{id}/mark-as-used")]
-    public async Task<IActionResult> MarkAsUsed(int id)
+    [HttpPut("{id}/mark-as-used")]
+    public async Task<IActionResult> MarkAsUsed(Seat seat)
     {
-        var reservation = _context.Find(x=> x.ReservationID == id);
-        if (reservation == null) return NotFound();
-
-        reservation.used = true;
+        
+        
+        if (seat == null) return NotFound();
+        else
+        {
+            var preneeded = new SeatController(_seatService);
+            var needed = await preneeded.ClaimSeat(seat);
         
 
         return NoContent();
+        }
     }
 
  
