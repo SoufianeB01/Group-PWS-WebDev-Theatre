@@ -15,6 +15,7 @@ public class SeatController : ControllerBase
     [HttpPost("claim")]
     public async Task<IActionResult> ClaimSeat([FromBody] Seat seat)
     {
+        if(seat == null)
         if (await _seatService.ClaimSeat(seat))
         {
             return Ok($"Seat at row {seat.Row}, col {seat.Col} claimed");

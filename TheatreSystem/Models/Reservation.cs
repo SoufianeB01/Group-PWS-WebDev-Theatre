@@ -9,6 +9,8 @@ public class Reservation
     public int amountOfTickets { get; set; }
     public bool used { get; set; }
 
+    public Reservation() { }
+
     public Reservation(int ReservationID, int CustomerID, TheaterShowDate TheatereShowDate, List<Seat> tickets, int amountOfTickets, bool used)
     {
         this.ReservationID = ReservationID;
