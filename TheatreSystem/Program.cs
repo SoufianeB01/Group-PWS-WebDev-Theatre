@@ -10,6 +10,7 @@ builder.Services.AddScoped<IReservationService, ReservationService>();
 builder.Services.AddScoped<ReservationData>(); // Consider if this should be singleton or scoped
 builder.Services.AddScoped<ITheaterShowService, TheaterShowService>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<ITheaterShowPollService, TheaterShowPollService>();
 
 // Add controllers
 builder.Services.AddControllers();
