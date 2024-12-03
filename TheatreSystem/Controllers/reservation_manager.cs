@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft;
+using TheatreSystem.Models;
 
 
 [Route($"api/admin"),]
@@ -10,9 +11,12 @@ using Microsoft;
 public class Reservation_managegerController:ControllerBase
 {
     private readonly  List<Reservation> _context;
+    private readonly  List<Customer> _context_customer;
+    private IReservationService _reservationService;
     private ISeatService _seatService;
-    public Reservation_managegerController(List<Reservation> context,ISeatService seatService)
+    public Reservation_managegerController(List<Reservation> context,ISeatService seatService,IReservationService reservationService)
     {
+        _reservationService = reservationService;
         _context = context;
         _seatService = seatService;
     }
@@ -39,6 +43,7 @@ public class Reservation_managegerController:ControllerBase
         var reservations = reservationsQuery.ToList();
         return Ok(reservations);
     }
+    
 
  
     [HttpPut("{id}/mark-as-used")]
@@ -59,7 +64,7 @@ public class Reservation_managegerController:ControllerBase
 
  
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteReservation(int id)
+    protected async Task<IActionResult> DeleteReservation([FromBody]int id)
     {
         var reservation =_context.Find(x=> x.ReservationID == id);
         if (reservation == null) return NotFound();
@@ -68,6 +73,20 @@ public class Reservation_managegerController:ControllerBase
         
 
         return NoContent();
+    }
+    [HttpGet("All_Reservations")]
+    protected async Task<IActionResult> getReservations()
+    {
+        foreach (var item in _context.Where(x=>x==x).ToList())
+        {
+            Console.WriteLine($"First name: {_context_customer.First(x=>x.CustomerId==item.CustomerID).FirstName}");
+            Console.WriteLine($"Last name: {_context_customer.First(x=>x.CustomerId==item.CustomerID).LastName}");
+            Console.WriteLine($"Email: {_context_customer.First(x=>x.CustomerId==item.CustomerID).Email}");
+            Console.WriteLine($"Tickets: {item.tickets}");
+            Console.WriteLine($"{item.TheatereShowDate}");
+           
+        }
+        return Ok();
     }
 }
 
