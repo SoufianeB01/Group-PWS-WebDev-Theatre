@@ -1,6 +1,13 @@
-#pragma warning disable CA1050 // Declare types in namespaces
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using TheatreSystem.Models;
+
+namespace TheatreSystem.Services
+{
 public class TheaterShowService : ITheaterShowService
-#pragma warning restore CA1050 // Declare types in namespaces
+
 {
     private readonly List<TheaterShow> _shows;
     private readonly List<TheaterShowDate> _showDates;
@@ -54,33 +61,36 @@ public class TheaterShowService : ITheaterShowService
         await Task.CompletedTask;
     }
 
-    public List<TheaterShow> GetFilteredShows
-    (
-        int? id,
-        string title = null,
-        string description = null,
-        int? venueId = null,
-        DateTime? startDate = null,
-        DateTime? endDate = null,
-        string sortBy = "title",
-        bool ascending = true)
+    public async Task<List<TheaterShow>> GetFilteredShowsAsync(
+    int? id,
+    string title = null,
+    string description = null,
+    int? venueId = null,
+    DateTime? startDate = null,
+    DateTime? endDate = null,
+    string sortBy = "title",
+    bool ascending = true)
     {
-        var filteredShows = _shows.ToList();
+        var filteredShows = _shows.ToList(); 
 
         if (id.HasValue)
         {
             var showById = filteredShows.FirstOrDefault(show => show.TheaterShowID == id.Value);
-            return showById != null ? new List<TheaterShow> { showById } : new List<TheaterShow>();
+            if (showById != null)
+            {
+                return new List<TheaterShow> { showById };
+            }
+            return new List<TheaterShow>();
         }
 
-        if (!string.IsNullOrEmpty(title))
+        if (title != null && title.Length > 0)
         {
             filteredShows = filteredShows
                 .Where(show => show.Title.Contains(title))
                 .ToList();
         }
 
-        if (!string.IsNullOrEmpty(description))
+        if (description != null && description.Length > 0)
         {
             filteredShows = filteredShows
                 .Where(show => show.Description.Contains(description))
@@ -97,9 +107,9 @@ public class TheaterShowService : ITheaterShowService
         if (startDate.HasValue || endDate.HasValue)
         {
             var showIdsWithMatchingDates = _showDates
-                .Where(date => 
-                    (!startDate.HasValue || date.Date >= startDate.Value) && 
-                    (!endDate.HasValue || date.Date <= endDate.Value))
+                .Where(date =>
+                    (startDate.HasValue == false || date.Date >= startDate.Value) &&
+                    (endDate.HasValue == false || date.Date <= endDate.Value))
                 .Select(date => date.TheaterShowID)
                 .Distinct()
                 .ToList();
@@ -109,13 +119,46 @@ public class TheaterShowService : ITheaterShowService
                 .ToList();
         }
 
-        filteredShows = sortBy.ToLower() switch
+        if (sortBy.ToLower() == "title")
         {
-            "title" => ascending ? filteredShows.OrderBy(show => show.Title).ToList() : filteredShows.OrderByDescending(show => show.Title).ToList(),
-            "price" => ascending ? filteredShows.OrderBy(show => show.Price).ToList() : filteredShows.OrderByDescending(show => show.Price).ToList(),
-            _ => ascending ? filteredShows.OrderBy(show => show.Title).ToList() : filteredShows.OrderByDescending(show => show.Title).ToList()
-        };
+            if (ascending)
+            {
+                filteredShows = filteredShows.OrderBy(show => show.Title).ToList();
+            }
+            else
+            {
+                filteredShows = filteredShows.OrderByDescending(show => show.Title).ToList();
+            }
+        }
+        else if (sortBy.ToLower() == "price")
+        {
+            if (ascending)
+            {
+                filteredShows = filteredShows.OrderBy(show => show.Price).ToList();
+            }
+            else
+            {
+                filteredShows = filteredShows.OrderByDescending(show => show.Price).ToList();
+            }
+        }
+        else
+        {
+            if (ascending)
+            {
+                filteredShows = filteredShows.OrderBy(show => show.Title).ToList();
+            }
+            else
+            {
+                filteredShows = filteredShows.OrderByDescending(show => show.Title).ToList();
+            }
+        }
 
-        return filteredShows;
+        return await Task.FromResult(filteredShows); 
+    }
+
+        public List<TheaterShow> GetFilteredShows(int? id, string title = null, string description = null, int? venueId = null, DateTime? startDate = null, DateTime? endDate = null, string sortBy = "title", bool ascending = true)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -66,87 +66,87 @@ DELETE https://localhost:5000/api/TheaterShow/1
 
 ### Requests for Authorization
 
-### Register User Person1
-POST https://localhost:5000/api/auth/register
-Content-Type: application/json
+# ### Register User Person1
+# POST https://localhost:5000/api/auth/register
+# Content-Type: application/json
 
-{
-    "username": "Person1",
-    "password": "password1"
-}
+# {
+#     "username": "Person1",
+#     "password": "password1"
+# }
 
-###
+# ###
 
-### Register User Person2
-POST https://localhost:5000/api/auth/register
-Content-Type: application/json
+# ### Register User Person2
+# POST https://localhost:5000/api/auth/register
+# Content-Type: application/json
 
-{
-    "username": "Person2",
-    "password": "password2"
-}
+# {
+#     "username": "Person2",
+#     "password": "password2"
+# }
 
-###
+# ###
 
-### Register User Person3
-POST https://localhost:5000/api/auth/register
-Content-Type: application/json
+# ### Register User Person3
+# POST https://localhost:5000/api/auth/register
+# Content-Type: application/json
 
-{
-    "username": "Person3",
-    "password": "password3"
-}
+# {
+#     "username": "Person3",
+#     "password": "password3"
+# }
 
-###
+# ###
 
-### Login as Person1
-POST https://localhost:5000/api/auth/login
-Content-Type: application/json
+# ### Login as Person1
+# POST https://localhost:5000/api/auth/login
+# Content-Type: application/json
 
-{
-    "username": "Person1",
-    "password": "password1"
-}
+# {
+#     "username": "Person1",
+#     "password": "password1"
+# }
 
-###
+# ###
 
-### Login as Person2
-POST https://localhost:5000/api/auth/login
-Content-Type: application/json
+# ### Login as Person2
+# POST https://localhost:5000/api/auth/login
+# Content-Type: application/json
 
-{
-    "username": "Person2",
-    "password": "password2"
-}
+# {
+#     "username": "Person2",
+#     "password": "password2"
+# }
 
-###
+# ###
 
-### Login as Person3
-POST https://localhost:5000/api/auth/login
-Content-Type: application/json
+# ### Login as Person3
+# POST https://localhost:5000/api/auth/login
+# Content-Type: application/json
 
-{
-    "username": "Person3",
-    "password": "password3"
-}
+# {
+#     "username": "Person3",
+#     "password": "password3"
+# }
 
-###
+# ###
 
-### Attempt to login with wrong password
-POST https://localhost:5000/api/auth/login
-Content-Type: application/json
+# ### Attempt to login with wrong password
+# POST https://localhost:5000/api/auth/login
+# Content-Type: application/json
 
-{
-    "username": "Person1",
-    "password": "wrongpassword"
-}
+# {
+#     "username": "Person1",
+#     "password": "wrongpassword"
+# }
 
-###
+# ###
 
-### Logout User
-POST https://localhost:5000/api/auth/logout
+# ### Logout User
+# POST https://localhost:5000/api/auth/logout
 
-###
+# ###
 
 
 ####
@@ -182,3 +182,21 @@ Content-Type: application/json
 
 ###
 GET https://localhost:5000/reservation
+
+###Login
+POST https://localhost:5000/api/auth/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "AdminID": 1,
+  "Username": "admin",
+  "Password": "password123",
+  "Email": "admin@gmail.com"
+}
+###
+
+# Logout request (POST)
+POST https://localhost:5000/api/auth/logout
+
+###
+GET https://localhost:5000/api/auth/status

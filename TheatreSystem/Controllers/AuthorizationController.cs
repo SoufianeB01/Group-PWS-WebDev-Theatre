@@ -1,72 +1,62 @@
 using Microsoft.AspNetCore.Mvc;
-using TheatreSystem.Models;
 using TheatreSystem.Services;
+using TheatreSystem.Models;
 
 namespace TheatreSystem.Controllers
 {
+    [ApiController]
     [Route("api/auth")]
     public class AuthorizationController : ControllerBase
     {
-        private readonly IUserService _userService;
+        private IAuthorizationService _authorizationService;
 
-        public AuthorizationController(IUserService userService)
+        public AuthorizationController(IAuthorizationService authorizationService)
         {
-            _userService = userService;
-        }
-
-        [HttpPost("register")]
-        public IActionResult Register([FromBody] User newUser)
-        {
-            if (_userService.UserExists(newUser.Username))
-            {
-                return BadRequest("Username already exists.");
-            }
-
-            _userService.RegisterNewUser(newUser);
-            return Ok("User registered successfully.");
+            _authorizationService = authorizationService;
         }
 
         [HttpPost("login")]
-        public IActionResult Login([FromBody] User loginUser)
+        public IActionResult Login([FromBody] Admin login)
         {
-            var user = _userService.GetUserByUsername(loginUser.Username);
-
-            if (user == null)
+            if (_authorizationService.IsLoggedIn())
             {
-                return BadRequest("User not found.");
+                return BadRequest("An admin is already logged in.");
             }
 
-            if (_userService.IsUserLoggedIn())
+            var success = _authorizationService.Login(login.Username, login.Password);
+
+            if (!success)
             {
-                return BadRequest("User is already logged in.");
+                return Unauthorized("Invalid username or password.");
             }
 
-            if (user.Password != loginUser.Password)
-            {
-                return Unauthorized("Invalid password.");
-            }
-
-            _userService.RegisterSession(loginUser.Username);
-            return Ok($"Welcome, {loginUser.Username}!");
+            return Ok($"Welcome, {login.Username}!");
         }
 
         [HttpPost("logout")]
         public IActionResult Logout()
         {
-            if (!_userService.IsUserLoggedIn())
+            if (!_authorizationService.IsLoggedIn())
             {
-                return BadRequest("No user is logged in.");
+                return BadRequest("No admin is currently logged in.");
             }
 
-            _userService.Logout();
+            _authorizationService.Logout();
             return Ok("Logged out successfully.");
         }
 
-        [HttpGet("users")]
-        public IActionResult GetUsers()
+        [HttpGet("status")]
+        public IActionResult GetLoginStatus()
         {
-            var users = _userService.GetAllUsers();
-            return Ok(users);
+            var isLoggedIn = _authorizationService.IsLoggedIn();
+
+            if (!isLoggedIn)
+            {
+                return Ok(new { IsLoggedIn = false, LoggedInUser = (string)null });
+            }
+
+            var loggedInAdmin = _authorizationService.GetLoggedInAdmin();
+            return Ok(new { IsLoggedIn = true, LoggedInUser = loggedInAdmin.Username });
         }
     }
 }

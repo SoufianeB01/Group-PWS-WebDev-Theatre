@@ -1,3 +1,6 @@
+
+namespace TheatreSystem.Services
+{
 public interface ITheaterShowService
 {
     List<TheaterShow> GetAllShows();
@@ -14,4 +17,5 @@ public interface ITheaterShowService
         DateTime? endDate = null,
         string sortBy = "title",
         bool ascending = true);
+}
 }

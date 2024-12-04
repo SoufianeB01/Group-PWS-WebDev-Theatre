@@ -7,9 +7,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Register services with appropriate lifetimes
 builder.Services.AddScoped<ISeatService, SeatDataService>();
 builder.Services.AddScoped<IReservationService, ReservationService>();
-builder.Services.AddScoped<ReservationData>(); // Consider if this should be singleton or scoped
+builder.Services.AddScoped<ReservationData>();
 builder.Services.AddScoped<ITheaterShowService, TheaterShowService>();
-builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IAuthorizationService, AuthorizationService>();
 
 // Add controllers
 builder.Services.AddControllers();

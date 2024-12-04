@@ -1,7 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using TheatreSystem.Services;
+using TheatreSystem.Models;
 
+
+namespace TheatreSystem.Controllers
+{
 [ApiController]
 [Route("api/[controller]")]
 public class TheaterShowController : ControllerBase
@@ -43,8 +48,15 @@ public class TheaterShowController : ControllerBase
         bool ascending = true)
     {
         var shows = _showService.GetFilteredShows(id, title, description, venueId, startDate, endDate, sortBy, ascending);
+
+        if (shows.Count == 0)
+        {
+            return NotFound("No entities found.");
+        }
+
         return Ok(shows);
     }
+
 
     [HttpPost]
     public async Task<IActionResult> CreateShow([FromBody] TheaterShow newShow)
@@ -119,4 +131,5 @@ public class TheaterShowController : ControllerBase
         await _showService.DeleteShow(id);
         return NoContent();
     }
+}
 }
