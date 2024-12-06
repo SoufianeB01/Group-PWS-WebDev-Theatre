@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\pvspi\\OneDrive\\Bureaublad\\Webproject\\WebDev-Theatre\\TheatreSystem\\TheatreSystem.csproj": {}
+    "C:\\Users\\soufi\\OneDrive - Hogeschool Rotterdam\\Informatica\\Jaar 2 semester 2\\Software Construction\\Projecten\\WebDev-Theatre\\TheatreSystem\\TheatreSystem.csproj": {}
   },
   "projects": {
-    "C:\\Users\\pvspi\\OneDrive\\Bureaublad\\Webproject\\WebDev-Theatre\\TheatreSystem\\TheatreSystem.csproj": {
+    "C:\\Users\\soufi\\OneDrive - Hogeschool Rotterdam\\Informatica\\Jaar 2 semester 2\\Software Construction\\Projecten\\WebDev-Theatre\\TheatreSystem\\TheatreSystem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\pvspi\\OneDrive\\Bureaublad\\Webproject\\WebDev-Theatre\\TheatreSystem\\TheatreSystem.csproj",
+        "projectUniqueName": "C:\\Users\\soufi\\OneDrive - Hogeschool Rotterdam\\Informatica\\Jaar 2 semester 2\\Software Construction\\Projecten\\WebDev-Theatre\\TheatreSystem\\TheatreSystem.csproj",
         "projectName": "TheatreSystem",
-        "projectPath": "C:\\Users\\pvspi\\OneDrive\\Bureaublad\\Webproject\\WebDev-Theatre\\TheatreSystem\\TheatreSystem.csproj",
-        "packagesPath": "C:\\Users\\pvspi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\pvspi\\OneDrive\\Bureaublad\\Webproject\\WebDev-Theatre\\TheatreSystem\\obj\\",
+        "projectPath": "C:\\Users\\soufi\\OneDrive - Hogeschool Rotterdam\\Informatica\\Jaar 2 semester 2\\Software Construction\\Projecten\\WebDev-Theatre\\TheatreSystem\\TheatreSystem.csproj",
+        "packagesPath": "C:\\Users\\soufi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\soufi\\OneDrive - Hogeschool Rotterdam\\Informatica\\Jaar 2 semester 2\\Software Construction\\Projecten\\WebDev-Theatre\\TheatreSystem\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\pvspi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\soufi\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
