@@ -1,35 +1,39 @@
 public class ReservationService : IReservationService
 {
-    private ReservationData _reservationData;
+private readonly AppDbContext _context;
 
-    public ReservationService(ReservationData reservationData)
+    public ReservationService(AppDbContext context)
     {
-        _reservationData = reservationData;
+        _context = context;
     }
 
-public bool ReserveSeat(CustomerReservationRequest request, int movieId)
-{
-    var customer = request.Customer;
-    var reservation = request.Reservation;
-    
-    Console.WriteLine($"Customer ID: {customer.CustomerId}");
-    Console.WriteLine($"Reservation Date: {reservation.TheatereShowDate}");
-    
-    int reservationId = _reservationData.Reservations.Count + 1;
-    int customerId = customer.CustomerId;
-    TheaterShowDate dateTime = reservation.TheatereShowDate;
-    int amountOfTickets = reservation.amountOfTickets;
-    bool used = false;
-    
-    _reservationData.Reservations.Add(new Reservation(reservationId, customerId, dateTime, new List<Seat>(), amountOfTickets, used));
-    
-    Console.WriteLine($"Reservations count after adding: {_reservationData.Reservations.Count}");  // Check count here
-    return true;
-}
+
+    public int MakeReservation(CustomerReservationRequest request, int movieId)
+    {
+        var customer = request.Customer;
+        var reservation = request.Reservation;
+        
+        int reservationId = _context.Reservations.Count() + 1;
+        int customerId = customer.CustomerId;
+        TheaterShowDate dateTime = reservation.TheatereShowDate;
+        int amountOfTickets = reservation.amountOfTickets;
+        bool used = false;
+        // check if seats are taken
+        // check if date is not in the past
+
+        _context.Reservations.Add(new Reservation(reservationId, customerId, dateTime, new List<Seat>(), amountOfTickets, used));
+        _context.SaveChanges(); // Persist changes to the database
+        Console.WriteLine($"Reservations count after adding: {_context.Reservations.Count()}");  // Check count here
+
+        // return total price
+        
+        return 0;
+    }
 
 
     public List<Reservation> GetReservations()
     {
-        return _reservationData.Reservations;
+        return _context.Reservations.ToList();
     }
+
 }

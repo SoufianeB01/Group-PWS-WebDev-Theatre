@@ -98,8 +98,8 @@ public class TheaterShowService : ITheaterShowService
         {
             var showIdsWithMatchingDates = _showDates
                 .Where(date => 
-                    (!startDate.HasValue || date.Date >= startDate.Value) && 
-                    (!endDate.HasValue || date.Date <= endDate.Value))
+                    (!startDate.HasValue || DateTime.Parse(date.Date) >= startDate.Value) && 
+                    (!endDate.HasValue || DateTime.Parse(date.Date) <= endDate.Value))
                 .Select(date => date.TheaterShowID)
                 .Distinct()
                 .ToList();

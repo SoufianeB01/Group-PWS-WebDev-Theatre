@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
@@ -43,29 +42,13 @@ namespace TheatreSystem.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Reservations",
-                columns: table => new
-                {
-                    ReservationID = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    CustomerID = table.Column<int>(type: "integer", nullable: false),
-                    TheatereShowDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    amountOfTickets = table.Column<int>(type: "integer", nullable: false),
-                    used = table.Column<bool>(type: "boolean", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Reservations", x => x.ReservationID);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "TheaterShowDates",
                 columns: table => new
                 {
                     TheaterShowDateID = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Date = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    Time = table.Column<TimeSpan>(type: "interval", nullable: false),
+                    Date = table.Column<string>(type: "text", nullable: false),
+                    Time = table.Column<string>(type: "text", nullable: false),
                     TheaterShowID = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
@@ -104,6 +87,28 @@ namespace TheatreSystem.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Reservations",
+                columns: table => new
+                {
+                    ReservationID = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    CustomerID = table.Column<int>(type: "integer", nullable: false),
+                    TheatereShowDateTheaterShowDateID = table.Column<int>(type: "integer", nullable: false),
+                    amountOfTickets = table.Column<int>(type: "integer", nullable: false),
+                    used = table.Column<bool>(type: "boolean", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Reservations", x => x.ReservationID);
+                    table.ForeignKey(
+                        name: "FK_Reservations_TheaterShowDates_TheatereShowDateTheaterShowDa~",
+                        column: x => x.TheatereShowDateTheaterShowDateID,
+                        principalTable: "TheaterShowDates",
+                        principalColumn: "TheaterShowDateID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Seats",
                 columns: table => new
                 {
@@ -125,6 +130,11 @@ namespace TheatreSystem.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Reservations_TheatereShowDateTheaterShowDateID",
+                table: "Reservations",
+                column: "TheatereShowDateTheaterShowDateID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Seats_ReservationID",
                 table: "Seats",
                 column: "ReservationID");
@@ -143,9 +153,6 @@ namespace TheatreSystem.Migrations
                 name: "Seats");
 
             migrationBuilder.DropTable(
-                name: "TheaterShowDates");
-
-            migrationBuilder.DropTable(
                 name: "TheaterShows");
 
             migrationBuilder.DropTable(
@@ -153,6 +160,9 @@ namespace TheatreSystem.Migrations
 
             migrationBuilder.DropTable(
                 name: "Reservations");
+
+            migrationBuilder.DropTable(
+                name: "TheaterShowDates");
         }
     }
 }

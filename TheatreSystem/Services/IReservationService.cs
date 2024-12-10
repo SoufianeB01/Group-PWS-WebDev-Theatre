@@ -1,5 +1,5 @@
 public interface IReservationService
 {
-    bool ReserveSeat( CustomerReservationRequest request, int movieId);
+    int MakeReservation( CustomerReservationRequest request, int movieId);
     List<Reservation> GetReservations();
 }
