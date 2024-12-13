@@ -29,7 +29,7 @@ public class Reservation_managegerController:ControllerBase
         }
         if (date.HasValue)
         {
-            reservationsQuery = reservationsQuery.Where(x => x.TheatereShowDate.Date == date.Value.Date);
+            reservationsQuery = reservationsQuery.Where(x => DateTime.Parse(x.TheatereShowDate.Date) == date.Value.Date);
         }
         if (!string.IsNullOrEmpty(search))
         {
