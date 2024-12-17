@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ojvkyQXO3hg=",
+  "dgSpecHash": "giz5H3fslpM=",
   "success": true,
-  "projectFilePath": "c:\\Users\\soufi\\OneDrive - Hogeschool Rotterdam\\Informatica\\Jaar 2 semester 2\\Software Construction\\Projecten\\WebDev-Theatre\\TheatreSystem\\TheatreSystem.csproj",
+  "projectFilePath": "C:\\Users\\soufi\\OneDrive - Hogeschool Rotterdam\\Informatica\\Jaar 2 semester 2\\Software Construction\\Projecten\\WebDev-Theatre\\TheatreSystem\\TheatreSystem.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\soufi\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\soufi\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\6.0.0\\microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
