@@ -82,8 +82,8 @@ namespace TheatreSystem.Migrations
                     b.Property<int>("CustomerID")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("TheatereShowDate")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<int>("TheatereShowDateTheaterShowDateID")
+                        .HasColumnType("integer");
 
                     b.Property<int>("amountOfTickets")
                         .HasColumnType("integer");
@@ -92,6 +92,8 @@ namespace TheatreSystem.Migrations
                         .HasColumnType("boolean");
 
                     b.HasKey("ReservationID");
+
+                    b.HasIndex("TheatereShowDateTheaterShowDateID");
 
                     b.ToTable("Reservations");
                 });
@@ -158,14 +160,16 @@ namespace TheatreSystem.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("TheaterShowDateID"));
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<string>("Date")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<int>("TheaterShowID")
                         .HasColumnType("integer");
 
-                    b.Property<TimeSpan>("Time")
-                        .HasColumnType("interval");
+                    b.Property<string>("Time")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("TheaterShowDateID");
 
@@ -190,6 +194,17 @@ namespace TheatreSystem.Migrations
                     b.HasKey("VenueID");
 
                     b.ToTable("Venues");
+                });
+
+            modelBuilder.Entity("Reservation", b =>
+                {
+                    b.HasOne("TheaterShowDate", "TheatereShowDate")
+                        .WithMany()
+                        .HasForeignKey("TheatereShowDateTheaterShowDateID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("TheatereShowDate");
                 });
 
             modelBuilder.Entity("Seat", b =>
