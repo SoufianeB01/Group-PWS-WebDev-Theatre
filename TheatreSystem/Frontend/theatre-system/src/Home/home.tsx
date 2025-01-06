@@ -26,17 +26,17 @@ export class Home extends React.Component<{}, HomeState> {
   renderContent(): JSX.Element {
     switch (this.state.view) {
       case "Home":
-        return <div>This is the Home page</div> ;
+        return <div>This is the Home page</div>;
       case "OverviewShows":
-        return <div>This is the Overview Shows page</div> ;
+        return <div>This is the Overview Shows page</div>;
       case "OverviewVenues":
-        return <div>This is the Overview Venues page</div> ;
+        return <div>This is the Overview Venues page</div>;
       case "Contact":
-        return <ReservationMain/> ;
+        return <ReservationMain />;
       case "Poll":
-        return <div>This is the Poll page</div> ;
+        return <div>This is the Poll page</div>;
       default:
-        return <div>Something went wrong</div> ;
+        return <div>Something went wrong</div>;
     }
   }
 }

@@ -51,7 +51,10 @@ public IActionResult GetAllSeats()
         var rowList = new List<bool>();
         for (int j = 0; j < cols; j++)
         {
-            rowList.Add(seatsArray[i, j]); // Populate the row list with the values from the 2D array
+            // rowList.Add(seatsArray[i, j]); // Populate the row list with the values from the 2D array
+            //fill the rowList with random boolean values
+            Random random = new Random();
+            rowList.Add(random.Next(0, 2) == 0 ? false : true);
         }
         result.Add(rowList); // Add the row list to the result
     }

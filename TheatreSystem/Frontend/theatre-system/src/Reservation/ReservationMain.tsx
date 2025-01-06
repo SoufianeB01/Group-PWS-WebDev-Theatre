@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Reservation from './Reservation';
 import ShoppingCard from '../ShoppingCart/ShoppingCart';
+import { ReservationState, initReservationState } from './Reservation.state';
 
 interface Seat {
     row: number;
@@ -8,31 +9,53 @@ interface Seat {
 }
 
 const ReservationMain: React.FC = () => {
-    const [selectedSeats, setSelectedSeats] = useState<Seat[]>([]);
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [email, setEmail] = useState('');
+    const [shoppingCard, setShoppingCard] = useState(false);
 
-    const [shoppingcard, setShoppingCard] = useState(false);
+    const [state, setState] = useState<ReservationState>(initReservationState); // op hoger niveau
+
+    // Update function to modify the state using the functional updates
+    const updateState = (newState: Partial<ReservationState>) => {
+        setState((prevState) => ({
+            ...prevState,
+            ...newState,
+        }));
+    };
+
+    // Handle method calls for updating individual properties
+    const handleSetSelectedSeats = (selectedSeats: Seat[]) => {
+        updateState({ selectedSeats });
+    };
+
+    const handleSetFirstName = (firstName: string) => {
+        updateState({ firstName });
+    };
+
+    const handleSetLastName = (lastName: string) => {
+        updateState({ lastName });
+    };
+
+    const handleSetEmail = (email: string) => {
+        updateState({ email });
+    };
 
     return (
-        shoppingcard
+        shoppingCard
             ? <ShoppingCard
-                selectedSeats={selectedSeats}
-                firstName={firstName}
-                lastName={lastName}
-                email={email}
+                selectedSeats={state.selectedSeats || []}
+                firstName={state.firstName || ''}
+                lastName={state.lastName || ''}
+                email={state.email || ''}
                 setShoppingCard={setShoppingCard}
-                 />
+            />
             : <Reservation
-                selectedSeats={selectedSeats}
-                setSelectedSeats={setSelectedSeats}
-                firstName={firstName}
-                setFirstName={setFirstName}
-                lastName={lastName}
-                setLastName={setLastName}
-                email={email}
-                setEmail={setEmail}
+                selectedSeats={state.selectedSeats || []}
+                setSelectedSeats={handleSetSelectedSeats}
+                firstName={state.firstName || ''}
+                setFirstName={handleSetFirstName}
+                lastName={state.lastName || ''}
+                setLastName={handleSetLastName}
+                email={state.email || ''}
+                setEmail={handleSetEmail}
                 setShoppingCard={setShoppingCard}
             />
     );
