@@ -1,61 +1,69 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using TheatreSystem.Models;
+using Microsoft.AspNetCore.Http;
+
 
 namespace TheatreSystem.Services
 {
     public class UserService : IUserService
     {
-        private readonly List<User> _Users;
-        private string _loggedInUser;
+        private readonly List<User> users;
+        private readonly IHttpContextAccessor Context;
 
-        public UserService()
+        public UserService(IHttpContextAccessor context)
         {
-            _Users = new List<User>();
-            _loggedInUser = null;
+            users = new List<User>();
+            Context = context;
         }
 
         public bool IsUserLoggedIn()
         {
-            return _loggedInUser != null;
+            return Context.HttpContext.Session.GetString("user") != null;
         }
 
         public void RegisterSession(string username)
         {
-            _loggedInUser = username;
+            Context.HttpContext.Session.SetString("user", username);
+        }
+
+        public void RemoveSession()
+        {
+            Context.HttpContext.Session.Remove("user");
+        }
+
+        public string GetLoggedInUser()
+        {
+            return Context.HttpContext.Session.GetString("user");
         }
 
         public void Logout()
         {
-            _loggedInUser = null;
+            RegisterSession(null);
         }
 
         public void RegisterNewUser(User newUser)
         {
-            if (UserExists(newUser.Username))
-            {
-                return;
-            }
-
             newUser.Id = Guid.NewGuid();
-            _Users.Add(newUser);
+            users.Add(newUser);
         }
 
         public bool UserExists(string username)
         {
-            return _Users.Any(u => u.Username == username);
+            var user = users.Any(u => u.Username == username);
+            return user;
         }
 
-        public User GetUserByUsername(string username)
+        public User GetUser(string username)
         {
-            return _Users.FirstOrDefault(u => u.Username == username);
+            var user = users.Where(u => u.Username == username).FirstOrDefault();
+            return user;
         }
 
         public List<User> GetAllUsers()
         {
-            return _Users;
+            return users;
         }
     }
 
@@ -65,8 +73,10 @@ namespace TheatreSystem.Services
         void Logout();
         void RegisterNewUser(User newUser);
         bool UserExists(string username);
-        User GetUserByUsername(string username);
+        User GetUser(string username);
         List<User> GetAllUsers();
         bool IsUserLoggedIn();
+        string GetLoggedInUser();
+        void RemoveSession();
     }
 }

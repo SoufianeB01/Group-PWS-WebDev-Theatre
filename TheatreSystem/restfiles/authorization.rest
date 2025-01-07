@@ -1,0 +1,92 @@
+### Requests for Authorization
+
+### GET all users
+GET https://localhost:5000/api/auth/users
+Content-Type: application/json
+###
+
+### Register User Admin1
+POST https://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+    "username": "Admin1",
+    "password": "adminpassword1"
+}
+###
+
+### Register User Admin2
+POST https://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+    "username": "Admin2",
+    "password": "adminpassword2"
+}
+###
+
+### Register User Admin3
+POST https://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+    "username": "Admin3",
+    "password": "adminpassword3"
+}
+###
+
+### Login as Admin1
+POST https://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+    "username": "Admin1",
+    "password": "adminpassword1"
+}
+###
+
+### Login as Admin2
+POST https://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+    "username": "Admin2",
+    "password": "adminpassword2"
+}
+###
+
+### Login as Admin3
+POST https://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+    "username": "Admin3",
+    "password": "adminpassword3"
+}
+###
+
+### Attempt to login with wrong password
+POST https://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+    "username": "Admin1",
+    "password": "wrongpassword"
+}
+###
+
+### Logout User
+POST https://localhost:5000/api/auth/logout
+###
+
+### Check if Admin1 is logged in
+GET https://localhost:5000/api/auth/session
+###
+
+### Check if Admin2 is logged in
+GET https://localhost:5000/api/auth/session
+###
+
+### Check if Admin3 is logged in
+GET https://localhost:5000/api/auth/session
+###

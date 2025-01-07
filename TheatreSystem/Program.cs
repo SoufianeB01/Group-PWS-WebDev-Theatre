@@ -4,12 +4,22 @@ using TheatreSystem.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+//Session
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
 // Register services with appropriate lifetimes
 builder.Services.AddScoped<ISeatService, SeatDataService>();
 builder.Services.AddScoped<IReservationService, ReservationService>();
 builder.Services.AddScoped<ReservationData>(); // Consider if this should be singleton or scoped
 builder.Services.AddScoped<ITheaterShowService, TheaterShowService>();
-builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddSingleton<IUserService, UserService>();
 
 // Add controllers
 builder.Services.AddControllers();
@@ -22,7 +32,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 
 var app = builder.Build();
-
+app.UseSession();
 // Map controllers
 app.MapControllers();
 

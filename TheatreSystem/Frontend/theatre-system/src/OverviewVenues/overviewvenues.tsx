@@ -5,23 +5,36 @@ import { Header } from "../Header/header";
 export class OverviewVenues extends React.Component<{}, HomeState> {
   constructor(props: {}) {
     super(props);
-    this.state = initHomeState;
+    this.state = {
+      ...initHomeState,
+      isLoggedIn: false,
+      username: null,
+    };
   }
+
+  handleLogout = () => {
+    this.setState({ isLoggedIn: false, username: null });
+  };
 
   render(): JSX.Element {
     return (
       <div>
-        <Header setView={this.setView} />
+        <Header 
+          setView={this.setView} 
+          isLoggedIn={this.state.isLoggedIn} 
+          username={this.state.username} 
+          onLogout={this.handleLogout} 
+        />
         {this.renderContent()}
       </div>
     );
   }
 
-  setView = (newView: "Home" | "OverviewShows" | "OverviewVenues" | "Contact" | "Poll") => {
+  setView = (newView: "Home" | "OverviewShows" | "OverviewVenues" | "Contact" | "Poll" | "Login") => {
     this.setState(this.state.updateView(newView));
-  }
+  };
 
   renderContent(): JSX.Element {
-    return <div>This is the Overview Venues page</div>;
+    return <div>This is the OverviewVenues page</div>;
   }
 }
