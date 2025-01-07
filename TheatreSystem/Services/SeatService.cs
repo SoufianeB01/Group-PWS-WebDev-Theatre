@@ -31,10 +31,10 @@ public class SeatDataService : ISeatService
     }
 
     // Check if a seat is available
-    public async Task<bool?> IsSeatAvailable(int row, int col)
+    public bool IsSeatAvailable(int row, int col)
     {
         if (row < 0 || row >= 10 || col < 0 || col >= 10)
-            return null;
+            return false; //out of range
 
         return _seatData.Seats[row, col];
     }

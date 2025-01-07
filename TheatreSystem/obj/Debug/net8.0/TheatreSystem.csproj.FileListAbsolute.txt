@@ -263,3 +263,5 @@ C:\Users\soufi\OneDrive - Hogeschool Rotterdam\Informatica\Jaar 2 semester 2\Sof
 C:\Users\pvspi\OneDrive\Bureaublad\Webproject\WebDev-Theatre\TheatreSystem\bin\Debug\net8.0\Frontend\theatre-system\package.json
 C:\Users\pvspi\OneDrive\Bureaublad\Webproject\WebDev-Theatre\TheatreSystem\bin\Debug\net8.0\Frontend\theatre-system\public\manifest.json
 C:\Users\pvspi\OneDrive\Bureaublad\Webproject\WebDev-Theatre\TheatreSystem\bin\Debug\net8.0\Frontend\theatre-system\tsconfig.json
+C:\Users\pvspi\OneDrive\Bureaublad\Webproject\WebDev-Theatre\TheatreSystem\bin\Debug\net8.0\package-lock.json
+C:\Users\pvspi\OneDrive\Bureaublad\Webproject\WebDev-Theatre\TheatreSystem\bin\Debug\net8.0\package.json
