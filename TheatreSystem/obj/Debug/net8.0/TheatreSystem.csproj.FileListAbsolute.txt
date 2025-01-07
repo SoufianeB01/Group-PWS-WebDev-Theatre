@@ -263,3 +263,5 @@ C:\Users\soufi\OneDrive - Hogeschool Rotterdam\Informatica\Jaar 2 semester 2\Sof
 C:\Users\soufi\OneDrive - Hogeschool Rotterdam\Informatica\Jaar 2 semester 2\Software Construction\Projecten\WebDev-Theatre\TheatreSystem\bin\Debug\net8.0\Frontend\theatre-system\package.json
 C:\Users\soufi\OneDrive - Hogeschool Rotterdam\Informatica\Jaar 2 semester 2\Software Construction\Projecten\WebDev-Theatre\TheatreSystem\bin\Debug\net8.0\Frontend\theatre-system\public\manifest.json
 C:\Users\soufi\OneDrive - Hogeschool Rotterdam\Informatica\Jaar 2 semester 2\Software Construction\Projecten\WebDev-Theatre\TheatreSystem\bin\Debug\net8.0\Frontend\theatre-system\tsconfig.json
+C:\Users\soufi\OneDrive - Hogeschool Rotterdam\Informatica\Jaar 2 semester 2\Software Construction\Projecten\WebDev-Theatre\TheatreSystem\bin\Debug\net8.0\Frontend\theatre-system\build\asset-manifest.json
+C:\Users\soufi\OneDrive - Hogeschool Rotterdam\Informatica\Jaar 2 semester 2\Software Construction\Projecten\WebDev-Theatre\TheatreSystem\bin\Debug\net8.0\Frontend\theatre-system\build\manifest.json

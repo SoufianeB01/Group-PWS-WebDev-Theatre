@@ -30,9 +30,20 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 // Register DatabaseService if it interacts with AppDbContext or the database
 
+// Add CORS services
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+    });
+});
 
 var app = builder.Build();
+app.UseCors("AllowAll");
 app.UseSession();
+
+
 // Map controllers
 app.MapControllers();
 

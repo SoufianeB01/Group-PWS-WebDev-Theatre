@@ -14,7 +14,11 @@ namespace TheatreSystem.Services
 
         public UserService(IHttpContextAccessor context)
         {
-            users = new List<User>();
+            users = new List<User>
+            {
+                new User { Username = "admin", Password = "admin123" },
+                new User { Username = "user1", Password = "user123" }
+            };
             Context = context;
         }
 

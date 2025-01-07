@@ -1,8 +1,7 @@
 import React from "react";
 import { HomeState, initHomeState } from "./home.state";
 import { Header } from "../Header/header";
-import { Login } from "../Login/login";
-
+import Login from "../Login/login";
 export class Home extends React.Component<{}, HomeState> {
   constructor(props: {}) {
     super(props);

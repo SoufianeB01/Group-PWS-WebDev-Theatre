@@ -1,40 +1,54 @@
-import React from "react";
-import { HomeState, initHomeState } from "../Home/home.state";
-import { Header } from "../Header/header";
+import React, { useState } from 'react';
 
-export class Contact extends React.Component<{}, HomeState> {
-  constructor(props: {}) {
-    super(props);
-    this.state = {
-      ...initHomeState,
-      isLoggedIn: false,
-      username: null,
-    };
-  }
+const Contact = () => {
+  const [users, setUsers] = useState<any[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
-  handleLogout = () => {
-    this.setState({ isLoggedIn: false, username: null });
+  // Functie die de GET-aanroep doet naar de API
+  const getAllUsers = () => {
+    fetch("https://localhost:5000/api/auth/users", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to fetch users");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setUsers(data); // Zet de ontvangen data in de state
+        setError(null); // Clear any previous errors
+      })
+      .catch((err) => {
+        setError(err.message); // Stel de fout in als er iets misgaat
+        setUsers([]); // Leeg de gebruikerslijst bij een fout
+      });
   };
 
-  render(): JSX.Element {
-    return (
-      <div>
-        <Header 
-          setView={this.setView} 
-          isLoggedIn={this.state.isLoggedIn} 
-          username={this.state.username} 
-          onLogout={this.handleLogout} 
-        />
-        {this.renderContent()}
-      </div>
-    );
-  }
+  return (
+    <div>
+      <h1>Contact Page</h1>
+      {/* De knop om de API-aanroep uit te voeren */}
+      <button onClick={getAllUsers}>Get All Users</button>
 
-  setView = (newView: "Home" | "OverviewShows" | "OverviewVenues" | "Contact" | "Poll" | "Login") => {
-    this.setState(this.state.updateView(newView));
-  };
+      {/* Foutmelding als er iets mis is */}
+      {error && <p style={{ color: 'red' }}>Error: {error}</p>}
 
-  renderContent(): JSX.Element {
-    return <div>This is the Contact page</div>;
-  }
-}
+      {/* Lijst van gebruikers */}
+      {users.length > 0 ? (
+        <ul>
+          {users.map((user, index) => (
+            <li key={index}>{user.username}</li> // Dit zou moeten overeenkomen met de structuur van de ontvangen data
+          ))}
+        </ul>
+      ) : (
+        <p>No users found</p>
+      )}
+    </div>
+  );
+};
+
+export default Contact;

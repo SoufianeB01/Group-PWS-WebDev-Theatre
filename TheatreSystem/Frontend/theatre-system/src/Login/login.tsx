@@ -1,59 +1,32 @@
-import React from "react";
-import { LoginState, initLoginState } from "./login.state";
+import React, { useState } from 'react';
+import { login } from './login.api';
 
-export class Login extends React.Component<{}, LoginState> {
-  constructor(props: {}) {
-    super(props);
-    this.state = initLoginState;
-  }
+const Login = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
-  handleLogin = () => {
-    const { username, password } = this.state;
-
-    fetch("https://localhost:5000/api/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ username, password }),
-    })
-      .then((response) => response.json())
+  const handleLogin = () => {
+    login(username, password)
       .then((data) => {
         if (data.success) {
-          alert("Login successful!");
-          window.location.href = "/dashboard";
+          window.location.href = '/dashboard';
         } else {
-          alert("Invalid data, please try again.");
+          alert(data.message || 'Invalid credentials');
         }
+      })
+      .catch(() => {
+        alert('An error occurred');
       });
   };
 
-  render(): JSX.Element {
-    return (
-      <div className="login-box">
-        <h1>Admin Login</h1>
-        <div>
-          <input
-            placeholder="Username"
-            type="text"
-            value={this.state.username}
-            onChange={(e) =>
-              this.setState(this.state.updateUsername(e.target.value))
-            }
-          />
-        </div>
-        <div>
-          <input
-            placeholder="Password"
-            type="password"
-            value={this.state.password}
-            onChange={(e) =>
-              this.setState(this.state.updatePassword(e.target.value))
-            }
-          />
-        </div>
-        <button onClick={this.handleLogin}>Login</button>
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <h1>Login</h1>
+      <input value={username} onChange={(e) => setUsername(e.target.value)} />
+      <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+      <button onClick={handleLogin}>Login</button>
+    </div>
+  );
+};
+
+export default Login;
