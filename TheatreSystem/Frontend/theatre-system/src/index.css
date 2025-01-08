@@ -15,11 +15,11 @@ code {
     monospace;
 }
 
+/*Header*/
 .header-logo {
   margin-right: 5%;
   height: 100%;
 }
-
 
 .header-item:hover {
   background-color: darkred;
@@ -30,11 +30,11 @@ code {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-start; /* Verplaatst items naar links */
+  justify-content: flex-start;
   background-color: red;
   color: white;
-  height: 60px; /* Vaste hoogte voor de header */
-  padding-left: 20px; /* Voeg padding toe om de header iets naar rechts te verplaatsen */
+  height: 60px;
+  padding-left: 20px;
 }
 
 
@@ -45,4 +45,36 @@ code {
   justify-content: center;
   height: 100%;
   width: 150px;
+}
+/*Login*/
+
+.loginBox {
+  padding: 20px;
+  max-width: 400px;
+  margin: 100px auto;
+  background-color: white;
+}
+
+h1 {
+  text-align: center;
+}
+
+input {
+  width: 80%;
+  padding: 10px;
+  margin: 10px auto;
+  display: block;
+}
+
+button {
+  padding: 10px 15px;
+  background-color: yellow;
+  color: black;
+  cursor: pointer;
+  display: block;
+  margin: 10px auto;
+}
+
+button:hover {
+  background-color: darkyellow;
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import { HomeState, initHomeState } from "./home.state";
 import { Header } from "../Header/header";
+import { Login } from "../Login/login";
 import Reservation from "../Reservation/Reservation";
 import ReservationMain from "../Reservation/ReservationMain";
 
@@ -13,15 +14,27 @@ export class Home extends React.Component<{}, HomeState> {
   render(): JSX.Element {
     return (
       <div>
-        <Header setView={this.setView} />
+        <Header 
+          setView={this.setView} 
+          isLoggedIn={this.state.isLoggedIn} 
+          username={this.state.username} 
+          onLogout={this.handleLogout} 
+        />
         {this.renderContent()}
       </div>
     );
   }
 
-  setView = (newView: "Home" | "OverviewShows" | "OverviewVenues" | "Contact" | "Poll") => {
+  setView = (newView: "Home" | "OverviewShows" | "OverviewVenues" | "Contact" | "Poll" | "Login") => {
     this.setState(this.state.updateView(newView));
-  }
+  };
+
+  handleLogout = () => {
+    this.setState({
+      isLoggedIn: false,
+      username: null,
+    });
+  };
 
   renderContent(): JSX.Element {
     switch (this.state.view) {
@@ -35,6 +48,8 @@ export class Home extends React.Component<{}, HomeState> {
         return <ReservationMain />;
       case "Poll":
         return <div>This is the Poll page</div>;
+      case "Login":
+        return <Login />;
       default:
         return <div>Something went wrong</div>;
     }

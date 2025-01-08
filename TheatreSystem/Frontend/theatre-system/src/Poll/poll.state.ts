@@ -1,8 +1,7 @@
 export type PollState = {
-    view: string;
-  };
+  view: string;
+};
 export const initPollState: PollState = {
-    view: "Poll",
-  };
+  view: "Poll",
+};
 export {};
-  
