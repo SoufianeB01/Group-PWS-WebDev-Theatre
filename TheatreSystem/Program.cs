@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using TheatreSystem.Services;
-using TheatreSystem.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 

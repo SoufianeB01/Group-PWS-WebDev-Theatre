@@ -45,9 +45,10 @@ export class Home extends React.Component<{}, HomeState> {
       case "OverviewVenues":
         return <div>This is the Overview Venues page</div>;
       case "Contact":
-        return <ReservationMain />;
+        return <ReservationMain movieId={2} theathreShowDateId={2} />;
       case "Poll":
         return <div>This is the Poll page</div>;
+        
       case "Login":
         return <Login />;
       default:
