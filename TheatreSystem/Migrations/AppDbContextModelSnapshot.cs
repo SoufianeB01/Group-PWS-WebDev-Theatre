@@ -100,6 +100,26 @@ namespace TheatreSystem.Migrations
                     b.ToTable("Seats");
                 });
 
+            modelBuilder.Entity("SeatingPlan", b =>
+                {
+                    b.Property<int>("SeatingPlanID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("SeatingPlanID"));
+
+                    b.Property<bool[,]>("Seats")
+                        .IsRequired()
+                        .HasColumnType("boolean[]");
+
+                    b.Property<int>("TheaterShowDateID")
+                        .HasColumnType("integer");
+
+                    b.HasKey("SeatingPlanID");
+
+                    b.ToTable("SeatingPlan");
+                });
+
             modelBuilder.Entity("TheaterShow", b =>
                 {
                     b.Property<int>("TheaterShowID")

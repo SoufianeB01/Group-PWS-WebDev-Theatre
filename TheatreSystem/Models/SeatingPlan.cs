@@ -19,4 +19,6 @@ public class SeatingPlan
             }
         }
     }
+
+    public SeatingPlan(){}
 }

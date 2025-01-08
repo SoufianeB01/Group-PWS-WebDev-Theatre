@@ -28,6 +28,20 @@ namespace TheatreSystem.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "SeatingPlan",
+                columns: table => new
+                {
+                    SeatingPlanID = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    TheaterShowDateID = table.Column<int>(type: "integer", nullable: false),
+                    Seats = table.Column<bool[,]>(type: "boolean[]", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SeatingPlan", x => x.SeatingPlanID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "TheaterShowDates",
                 columns: table => new
                 {
@@ -145,6 +159,9 @@ namespace TheatreSystem.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Customers");
+
+            migrationBuilder.DropTable(
+                name: "SeatingPlan");
 
             migrationBuilder.DropTable(
                 name: "Seats");

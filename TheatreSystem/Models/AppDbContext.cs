@@ -14,6 +14,7 @@ public class AppDbContext : DbContext
     public DbSet<User> Users { get; set; }
     public DbSet<Venue> Venues { get; set; }
     public DbSet<Seat> Seats { get; set; }
+    public DbSet<SeatingPlan> SeatingPlan { get; set; }
 
 
     // Override OnModelCreating for additional configuration

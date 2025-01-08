@@ -3,22 +3,49 @@ using System.Threading.Tasks;
 
 public class SeatDataService : ISeatService
 {
+    public AppDbContext _context { get; set; }
     private SeatData _seatData;
 
-    public SeatDataService()
+    public SeatDataService(AppDbContext context)
     {
+        _context = context;
         _seatData = new SeatData();
     }
 
+
     // Claim a seat
-    public async Task<bool> ClaimSeat(Seat seat)
+    public async Task<bool> ClaimSeat(Seat seat, int movieDateId)
     {
-        if (_seatData.Seats[seat.Row, seat.Col] == false)
+        // Get seating plan for the specified movie date
+        var seatingPlan = _context.SeatingPlan.FirstOrDefault(s => s.TheaterShowDateID == movieDateId);
+        if (seatingPlan == null)
             return false;
 
-        _seatData.Seats[seat.Row, seat.Col] = false; // Seat claimed
+        // Check if the seat is available
+        if (!_seatData.Seats[seat.Row, seat.Col])
+            return false;
+
+        // Mark the seat as claimed
+        _seatData.Seats[seat.Row, seat.Col] = false;
+
+        // Save the updated seating plan to the database
+        seatingPlan.Seats = _seatData.Seats; // Assuming `Seats` is a serializable array or collection
+        _context.SeatingPlan.Update(seatingPlan);
+
+        // Persist the changes
+        await _context.SaveChangesAsync();
+
         return true;
     }
+
+    public void ClaimSeats(List<Seat> seat, int movieDateId)
+    {
+        foreach (Seat s in seat)
+        {
+            ClaimSeat(s, movieDateId);
+        }
+    }
+
 
     // Release a seat
     public async Task<bool> ReleaseSeat(Seat seat)
@@ -39,7 +66,7 @@ public class SeatDataService : ISeatService
         return _seatData.Seats[row, col];
     }
 
-    
+
 
     // Get the entire seat map
     public bool[,] GetAllSeats()

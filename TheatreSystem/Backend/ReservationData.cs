@@ -1,10 +1,16 @@
 public class ReservationData
 {
-    public List<Reservation> Reservations { get; set; }
+    public Dictionary<int, Reservation> Reservations { get; set; }
+    private int counter;
 
     public ReservationData()
     {
-        Reservations = new List<Reservation>();
+        Reservations = new Dictionary<int, Reservation>();
+    }
+
+    public void AddReservationToShoppingCart(Reservation reservation)
+    {
+        Reservations.Add(counter++, reservation);
     }
 
 

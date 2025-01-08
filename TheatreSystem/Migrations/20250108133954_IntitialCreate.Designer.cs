@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace TheatreSystem.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250108110716_IntitialCreate")]
+    [Migration("20250108133954_IntitialCreate")]
     partial class IntitialCreate
     {
         /// <inheritdoc />
@@ -101,6 +101,26 @@ namespace TheatreSystem.Migrations
                     b.HasIndex("ReservationID");
 
                     b.ToTable("Seats");
+                });
+
+            modelBuilder.Entity("SeatingPlan", b =>
+                {
+                    b.Property<int>("SeatingPlanID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("SeatingPlanID"));
+
+                    b.Property<bool[,]>("Seats")
+                        .IsRequired()
+                        .HasColumnType("boolean[]");
+
+                    b.Property<int>("TheaterShowDateID")
+                        .HasColumnType("integer");
+
+                    b.HasKey("SeatingPlanID");
+
+                    b.ToTable("SeatingPlan");
                 });
 
             modelBuilder.Entity("TheaterShow", b =>

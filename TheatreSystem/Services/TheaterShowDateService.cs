@@ -23,8 +23,18 @@ public class TheaterShowDateService : ITheaterShowDateService
     {
         showDate.TheaterShowDateID = _nextId++;
         _context.TheaterShowDates.Add(showDate);
+        addSeatingPlan(showDate.TheaterShowDateID);
         _context.SaveChanges();
         await Task.CompletedTask;
+    }
+
+    private void addSeatingPlan(int theaterShowDateID)
+    {
+        var newSeatingPlan = new SeatingPlan(theaterShowDateID, theaterShowDateID)
+        {
+            TheaterShowDateID = theaterShowDateID
+        };
+        _context.SeatingPlan.Add(newSeatingPlan);
     }
 
     public async Task UpdateShowDate(TheaterShowDate updatedShowDate)

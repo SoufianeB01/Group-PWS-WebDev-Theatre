@@ -149,8 +149,8 @@ POST https://localhost:5000/api/auth/logout
 ###
 
 
-####
-POST https://localhost:5000/reservation/movieId=123/theaterShowDateID=5 HTTP/1.1
+###
+POST https://localhost:5000/reservation/123/1 HTTP/1.1
 Content-Type: application/json
 
 {
@@ -161,13 +161,13 @@ Content-Type: application/json
     "Email": "johndoe@example.com"
   },
   "Reservation": {
-    "ReservationID": 102,
+    "ReservationID": 0,
     "CustomerID": 0,
     "TheatereShowDate": {
-      "TheaterShowDateID": 5,
-  "Date": "2024-12-25",
-  "Time": "16:00:00",
-  "TheaterShowID": 101
+      "TheaterShowDateID": 1,
+      "Date": "2025-12-25",
+      "Time": "16:00:00",
+      "TheaterShowID": 1
     },
     "tickets": [
       {
@@ -179,12 +179,16 @@ Content-Type: application/json
         "col": 5
       }
     ],
-    "amountOfTickets": 3,
+    "amountOfTickets": 2,
     "used": false
   }
 }
 
+###
+GET https://localhost:5000/reservation/ShoppingCart
 
+###
+POST https://localhost:5000/reservation
 ###
 GET https://localhost:5000/reservation
 
