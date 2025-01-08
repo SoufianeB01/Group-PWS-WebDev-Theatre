@@ -17,14 +17,15 @@ interface Reservation {
     };
     tickets: Seat[];
     amountOfTickets: number;
-    used: boolean;  
+    used: boolean;
 }
 
 interface ShoppingCartProps {
     setShoppingCard: (value: boolean) => void;
+    clearselectedSeats: () => void;
 }
 
-const ShoppingCard: React.FC<ShoppingCartProps> = ({ setShoppingCard }) => {
+const ShoppingCard: React.FC<ShoppingCartProps> = ({ setShoppingCard, clearselectedSeats }) => {
     const [data, setData] = useState<Reservation[]>([]);
 
     useEffect(() => {
@@ -44,7 +45,18 @@ const ShoppingCard: React.FC<ShoppingCartProps> = ({ setShoppingCard }) => {
     }, []);
 
     const handleConfirm = async () => {
-        // Add your confirmation logic here
+        try {
+            const response = await fetch('/reservation', {
+                method: 'POST',
+            });
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            clearselectedSeats();
+            setShoppingCard(false);
+        } catch (error) {
+            console.error('Error confirming reservations:', error);
+        }
     };
 
     return (

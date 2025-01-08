@@ -188,7 +188,7 @@ Content-Type: application/json
 GET https://localhost:5000/reservation/ShoppingCart
 
 ###
-POST https://localhost:5000/reservation/final
+POST https://localhost:5000/reservation
 ###
 GET https://localhost:5000/reservation
 

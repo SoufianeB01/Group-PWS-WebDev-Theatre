@@ -33,15 +33,15 @@ export class Home extends React.Component<{}, HomeState> {
       case "OverviewVenues":
         return <div>This is the Overview Venues page</div>;
       case "Contact":
-        return <ReservationMain movieId={2} theathreShowDateId={2}/>;
+        return <ReservationMain movieId={2} theathreShowDateId={2} />;
       case "Poll":
         return <div>This is the Poll page</div>;
       case "Shoppingcard":
-        return <
-          ShoppingCard 
-          setShoppingCard={()=>{}}
+        return <ShoppingCard
+          setShoppingCard={() => { }}
+          clearselectedSeats={() => { }}
 
-          />
+        />
       default:
         return <div>Something went wrong</div>;
     }

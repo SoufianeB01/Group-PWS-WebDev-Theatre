@@ -33,6 +33,12 @@ const ReservationMain: React.FC<ReservationMainProps> = ({ movieId, theathreShow
         updateState({ selectedSeats });
     };
 
+    const clearSelectedSeats = () => {
+        const selectedSeats: Seat[] = [];
+        updateState({ selectedSeats });
+    };
+
+
     const handleSetFirstName = (firstName: string) => {
         updateState({ firstName });
     };
@@ -48,9 +54,9 @@ const ReservationMain: React.FC<ReservationMainProps> = ({ movieId, theathreShow
     return (
 
         shoppingCard ?
-            <
-                ShoppingCard
+            <ShoppingCard
                 setShoppingCard={setShoppingCard}
+                clearselectedSeats={clearSelectedSeats}
 
             /> :
             <Reservation

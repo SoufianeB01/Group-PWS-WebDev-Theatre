@@ -16,17 +16,18 @@ public class SeatDataService : ISeatService
     // Claim a seat
     public async Task<bool> ClaimSeat(Seat seat, int movieDateId)
     {
+        
         // Get seating plan for the specified movie date
         var seatingPlan = _context.SeatingPlan.FirstOrDefault(s => s.TheaterShowDateID == movieDateId);
         if (seatingPlan == null)
             return false;
 
         // Check if the seat is available
-        if (!_seatData.Seats[seat.Row, seat.Col])
+        if (!_seatData.Seats[seat.Row -1, seat.Col-1])
             return false;
 
         // Mark the seat as claimed
-        _seatData.Seats[seat.Row, seat.Col] = false;
+        _seatData.Seats[seat.Row-1, seat.Col-1] = false;
 
         // Save the updated seating plan to the database
         seatingPlan.Seats = _seatData.Seats; // Assuming `Seats` is a serializable array or collection
