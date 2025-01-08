@@ -58,7 +58,7 @@ public class Reservation_managegerController:ControllerBase
     }
 
  
-    [HttpDelete("{id}")]
+    [HttpDelete("Delete")]
     public async Task<IActionResult> DeleteReservation(int id)
     {
         var reservation =_context.Find(x=> x.ReservationID == id);
