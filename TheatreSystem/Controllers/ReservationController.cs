@@ -13,8 +13,8 @@ public class ReservationController : ControllerBase
         _reservationService = reservationService;
     }
 
-    [HttpPost("{movieId}")]
-    public async Task<IActionResult> ReserveSeat([FromBody] CustomerReservationRequest customerwithreservation, int movieId)
+    [HttpPost("{movieId}")]///{theaterShowDateID}")]
+    public async Task<IActionResult> ReserveSeat([FromBody] CustomerReservationRequest customerwithreservation, int movieId)//, int theaterShowDateID)
     {
         if (customerwithreservation == null) return BadRequest("Invalid request");
 
@@ -22,7 +22,9 @@ public class ReservationController : ControllerBase
         var reservation = customerwithreservation.Reservation;
 
         // Use movieId as needed
-        _reservationService.MakeReservation(customerwithreservation, movieId);
+        int res = _reservationService.MakeReservation(customerwithreservation, movieId, 0);
+        if (res == -1) return BadRequest("Seat is already taken");
+        if (res == -2) return BadRequest("Date is in the past");
         return this.Ok(reservation);
     }
     

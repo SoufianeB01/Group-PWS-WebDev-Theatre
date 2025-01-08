@@ -150,19 +150,19 @@ POST https://localhost:5000/api/auth/logout
 
 
 ####
-POST https://localhost:5000/reservation/movieId=123 HTTP/1.1
+POST https://localhost:5000/reservation/movieId=123/theaterShowDateID=5 HTTP/1.1
 Content-Type: application/json
 
 {
   "Customer": {
-    "CustomerId": 2,
-    "FirstName": "John",
-    "LastName": "Doe",
+    "CustomerId": 0,
+    "FirstName": "Jon",
+    "LastName": "pfgk",
     "Email": "johndoe@example.com"
   },
   "Reservation": {
     "ReservationID": 102,
-    "CustomerID": 3,
+    "CustomerID": 0,
     "TheatereShowDate": {
       "TheaterShowDateID": 5,
   "Date": "2024-12-25",

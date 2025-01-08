@@ -28,6 +28,8 @@ public class TheaterShowService : ITheaterShowService
     {
         show.TheaterShowID = _nextId++;
         _shows.Add(show);
+        //hier adden van seating plan
+        
         await Task.CompletedTask;
     }
 

@@ -7,6 +7,7 @@ public class SeatController : ControllerBase
 {
     private ISeatService _seatService;
 
+
     public SeatController(ISeatService seatService)
     {
         _seatService = seatService;

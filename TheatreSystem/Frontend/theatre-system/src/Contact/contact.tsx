@@ -8,17 +8,26 @@ export class Contact extends React.Component<{}, HomeState> {
     this.state = initHomeState;
   }
 
-  render(): JSX.Element {
+handleLogout = () => {
+  this.setState({ isLoggedIn: false, username: null });
+};
+
+render(): JSX.Element {
     return (
       <div>
-        <Header setView={this.setView} />
+        <Header 
+          setView={this.setView} 
+          isLoggedIn={this.state.isLoggedIn} 
+          username={this.state.username} 
+          onLogout={this.handleLogout} 
+        />
         {this.renderContent()}
       </div>
     );
   }
 
-  setView = (newView: "Home" | "OverviewShows" | "OverviewVenues" | "Contact" | "Poll") => {
-    this.setState(this.state.updateView(newView));
+    setView = (newView: "Home" | "OverviewShows" | "OverviewVenues" | "Contact" | "Poll" | "Login") => {
+      this.setState(this.state.updateView(newView));
   }
 
   renderContent(): JSX.Element {

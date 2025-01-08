@@ -13,16 +13,7 @@ export const initLoginState: LoginState = {
   view: "login",
   username: "",
   password: "",
-  updateView: (view: ViewState) => (state: LoginState): LoginState => ({
-    ...state,
-    view: view,
-  }),
-  updateUsername: (username: string) => (state: LoginState): LoginState => ({
-    ...state,
-    username: username,
-  }),
-  updatePassword: (password: string) => (state: LoginState): LoginState => ({
-    ...state,
-    password: password,
-  }),
+  updateView: (view: ViewState) => (state: LoginState): LoginState => ({...state, view: view,}),
+  updateUsername: (username: string) => (state: LoginState): LoginState => ({...state, username: username,}),
+  updatePassword: (password: string) => (state: LoginState): LoginState => ({...state, password: password, }),
 };
