@@ -36,3 +36,42 @@
     transform: rotate(360deg);
   }
 }
+
+.searchBar {
+  width: 100%;
+  border: none;
+  border-bottom: 4px solid #000;
+  font-size: 1.2rem;
+  border-radius: 16px 16px 0 0;
+  padding: 5px;
+}
+
+.searchBar:focus {
+  outline: none;
+  border-bottom: 4px solid blue;
+}
+.searchHolder {
+  border: 4px solid #000;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  margin: 24px auto;
+  overflow: hidden;
+}
+
+.searchData {
+  background-color: #CFCFFD;
+}
+
+.searchData ul {
+  padding: 12px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.searchData li {
+  display: inline;
+  width: 200px;
+}
