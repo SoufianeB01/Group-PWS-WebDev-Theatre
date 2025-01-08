@@ -150,7 +150,7 @@ POST https://localhost:5000/api/auth/logout
 
 
 ###
-POST https://localhost:5000/reservation/123/1 HTTP/1.1
+POST https://localhost:5000/reservation/2/1 HTTP/1.1
 Content-Type: application/json
 
 {
@@ -172,11 +172,11 @@ Content-Type: application/json
     "tickets": [
       {
         "row": 1,
-        "col": 5
+        "col": 1
       },
       {
-        "row": 4,
-        "col": 5
+        "row": 1,
+        "col": 2
       }
     ],
     "amountOfTickets": 2,
@@ -193,7 +193,7 @@ POST https://localhost:5000/reservation
 GET https://localhost:5000/reservation
 
 ####
-GET https://localhost:5000/movie/seats/all
+GET https://localhost:5000/movie/seats/all/1
 
 ###
 POST https://localhost:5000/movie/seats/claim HTTP/1.1

@@ -69,8 +69,9 @@ public class SeatDataService : ISeatService
 
 
     // Get the entire seat map
-    public bool[,] GetAllSeats()
+    public bool[,] GetAllSeats(int movieShowDateId)
     {
-        return _seatData.Seats;
+        // return _seatData.Seats;
+        return _context.SeatingPlan.FirstOrDefault(s => s.TheaterShowDateID == movieShowDateId)?.Seats;
     }
 }

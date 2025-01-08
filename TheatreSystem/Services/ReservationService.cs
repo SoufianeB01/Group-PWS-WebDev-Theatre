@@ -83,23 +83,42 @@ public class ReservationService : IReservationService
 
     public async Task Checkout()
     {
-        // Add reservations to database
         foreach (Reservation reservation in _shoppingCart.Reservations.Values)
         {
-            int reservationId = _context.Reservations.Count() + 1;
-            // Console.WriteLine(reservation.);
-            _context.Reservations.Add(new Reservation(reservationId, reservation.CustomerID, reservation.TheatereShowDate, reservation.tickets, reservation.amountOfTickets, reservation.used));
-            // _context.Reservations.Add(reservation);
-            // _seatService.ClaimSeats(reservation.tickets, reservation.TheatereShowDate.TheaterShowDateID);
+            // Attach the existing TheaterShowDate to avoid adding it as a new entity
+            var existingTheaterShowDate = _context.TheaterShowDates
+                .FirstOrDefault(t => t.TheaterShowDateID == reservation.TheatereShowDate.TheaterShowDateID);
 
+            if (existingTheaterShowDate != null)
+            {
+                _context.Attach(existingTheaterShowDate);
+            }
+
+            var newReservation = new Reservation
+            {
+                CustomerID = reservation.CustomerID,
+                TheatereShowDate = existingTheaterShowDate, 
+                tickets = reservation.tickets,
+                amountOfTickets = reservation.amountOfTickets,
+                used = reservation.used
+            };
+            
+            //claim the seats
+            foreach (Seat ticket in reservation.tickets)
+            {
+                _seatService.ClaimSeat(ticket, existingTheaterShowDate.TheaterShowDateID);
+            }
+
+
+            _context.Reservations.Add(newReservation);
         }
 
-
-        // Clear shopping cart
+        // Clear the shopping cart
         _shoppingCart.Reservations.Clear();
 
         await _context.SaveChangesAsync();
     }
+
 
 
 
