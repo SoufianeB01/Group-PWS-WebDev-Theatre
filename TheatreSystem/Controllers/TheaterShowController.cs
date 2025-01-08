@@ -19,8 +19,8 @@ public class TheaterShowController : ControllerBase
         var shows = _showService.GetAllShows();
         return Ok(shows);
     }
-    
-   [HttpGet("{id}")]
+
+    [HttpGet("{id}")]
     public IActionResult GetShowById(int id)
     {
         var show = _showService.GetShowById(id);
@@ -53,46 +53,25 @@ public class TheaterShowController : ControllerBase
         return CreatedAtAction(nameof(GetShowById), new { id = newShow.TheaterShowID }, newShow);
     }
 
-    [HttpPost]
-    public async Task<IActionResult> CreateShows([FromBody] object input)
+    [HttpPost("bulk")]
+    public async Task<IActionResult> CreateShows([FromBody] List<TheaterShow> newShows)
     {
-    if (input == null)
-    {
-        return BadRequest("Input cannot be null.");
-    }
-    var createdShows = new List<TheaterShow>();
-    if (input is List<TheaterShow> listshows)
-    {
-        if (!listshows.Any())
+        if (newShows == null || newShows.Count == 0)
         {
-            return BadRequest("The list of shows can't be empty.");
+            return BadRequest("The list of shows cannot be null or empty.");
         }
-        foreach (var show in listshows)
+
+        var createdShows = new List<TheaterShow>();
+
+        foreach (var show in newShows)
         {
             await _showService.CreateShow(show);
             createdShows.Add(show);
         }
-    }
-    else if (input is Dictionary<string, TheaterShow> ShowsDict)
-    {
-        if (!ShowsDict.Any())
-        {
-            return BadRequest("The dictionary of shows can't be empty.");
-        }
-        foreach (var pair in ShowsDict)
-        {
-            var show = pair.Value;
-            await _showService.CreateShow(show);
-            createdShows.Add(show);
-        }
-    }
-    else
-    {
-        return BadRequest("Input must be either a list of TheaterShow objects or a dictionary.");
+
+        return CreatedAtAction(nameof(GetAllShows), createdShows);
     }
 
-    return CreatedAtAction(nameof(GetShowById), new { ids = createdShows.Select(s => s.TheaterShowID).ToArray() }, createdShows);
-    }
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateShow(int id, [FromBody] TheaterShow updatedShow)
     {

@@ -1,6 +1,8 @@
+
 public interface IReservationService
 {
-    int MakeReservation( CustomerReservationRequest request, int movieId, int theaterShowDateID);
+    float MakeReservation( CustomerReservationRequest request, int movieId, int theaterShowDateID);
     List<Reservation> GetReservations();
-    
+    List<Reservation> GetReservationsInShoppingCart();
+    Task Checkout();
 }
