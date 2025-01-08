@@ -1,4 +1,4 @@
-export type ViewState = "Home" | "OverviewShows" | "OverviewVenues" | "Contact" | "Poll";
+export type ViewState = "Home" | "OverviewShows" | "OverviewVenues" | "Contact" | "Poll" | "Shoppingcard";
 
 export type HomeState = {
   view: ViewState;

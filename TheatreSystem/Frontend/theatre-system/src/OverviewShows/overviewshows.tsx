@@ -17,7 +17,7 @@ export class OverviewShows extends React.Component<{}, HomeState> {
     );
   }
 
-  setView = (newView: "Home" | "OverviewShows" | "OverviewVenues" | "Contact" | "Poll") => {
+  setView = (newView: "Home" | "OverviewShows" | "OverviewVenues" | "Contact" | "Poll" | "Shoppingcard") => {
     this.setState(this.state.updateView(newView));
   }
 

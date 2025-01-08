@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { HomeState, initHomeState } from "../Home/home.state";
 import InputField from './inputfield';
 
 interface ReservationProps {
     theathreShowDateId: number,
+    movieId: number,
     selectedSeats: Seat[];
     firstName: string;
     lastName: string;
@@ -21,6 +23,7 @@ interface Seat {
 
 const Reservation: React.FC<ReservationProps> = ({
     theathreShowDateId,
+    movieId,
     selectedSeats,
     firstName,
     lastName,
@@ -63,7 +66,7 @@ const Reservation: React.FC<ReservationProps> = ({
         }
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         setSeatError(selectedSeats.length === 0 ? 'Please select one or more seats' : '');
         setFirstNameError(firstName.trim().length === 0 ? 'Please fill in First Name' : '');
         setLastNameError(lastName.trim().length === 0 ? 'Please fill in Last Name' : '');
@@ -71,6 +74,55 @@ const Reservation: React.FC<ReservationProps> = ({
 
         if (selectedSeats.length > 0 && firstName.trim() && lastName.trim() && email.trim()) {
             setShoppingCard?.(true);
+
+            // Prepare the request payload
+            const requestData = {
+                Customer: {
+                    CustomerId: 0, // You should replace this with the actual customer ID
+                    FirstName: firstName,
+                    LastName: lastName,
+                    Email: email,
+                },
+                Reservation: {
+                    ReservationID: 0,
+                    CustomerID: 0,
+                    TheaterShowDate: {
+                        TheaterShowDateID: theathreShowDateId,
+                        Date: "2024-12-25",
+                        Time: "16:00:00",
+                        TheaterShowID: movieId,
+                    },
+                    tickets: selectedSeats.map((seat) => ({
+                        row: seat.row,
+                        col: seat.col,
+                    })),
+                    amountOfTickets: selectedSeats.length,
+                    used: false,
+                },
+            };
+
+            try {
+                // Make the POST request
+                const response = await fetch(`https://localhost:5000/reservation/${movieId}/${theathreShowDateId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(requestData),
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to submit the reservation');
+                }
+                console.log(response.body)
+
+                setShoppingCard?.(true);
+
+            } catch (error) {
+                // Handle errors
+                console.error('Error:', error);
+                alert('An error occurred while confirming the reservation.');
+            }
         }
     };
 
@@ -100,13 +152,12 @@ const Reservation: React.FC<ReservationProps> = ({
                                     {Array.from({ length: 10 }, (_, col) => (
                                         <td
                                             key={`${row}-${col}`}
-                                            className={`square-seat p-2 border-2 rounded-2 ${
-                                                selectedSeats.some(seat => seat.row === row + 1 && seat.col === col + 1)
-                                                    ? 'bg-secondary text-white border-primary'
-                                                    : seats[row]?.[col]
+                                            className={`square-seat p-2 border-2 rounded-2 ${selectedSeats.some(seat => seat.row === row + 1 && seat.col === col + 1)
+                                                ? 'bg-secondary text-white border-primary'
+                                                : seats[row]?.[col]
                                                     ? 'bg-light'
                                                     : 'bg-danger'
-                                            }`}
+                                                }`}
                                             onClick={() => handleSeatClick(row + 1, col + 1)}
                                             style={{ cursor: 'pointer', width: 30, height: 30 }}
                                             aria-label={`Seat at row ${row + 1}, column ${col + 1}`}

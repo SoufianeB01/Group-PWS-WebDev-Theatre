@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Reservation from './Reservation';
 import ShoppingCard from '../ShoppingCart/ShoppingCart';
+import { HomeState, initHomeState } from "../Home/home.state";
+
 import { ReservationState, initReservationState } from './Reservation.state';
 
 interface Seat {
@@ -10,17 +12,17 @@ interface Seat {
 
 interface ReservationMainProps {
     movieId: number,
-    theathreShowDateId: number
+    theathreShowDateId: number,
 }
 
 const ReservationMain: React.FC<ReservationMainProps> = ({ movieId, theathreShowDateId }) => {
     const [shoppingCard, setShoppingCard] = useState(false);
 
-    const [state, setState] = useState<ReservationState>(initReservationState); // op hoger niveau
+    const [state, setlocalState] = useState<ReservationState>(initReservationState); // op hoger niveau
 
     // Update function to modify the state using the functional updates
     const updateState = (newState: Partial<ReservationState>) => {
-        setState((prevState) => ({
+        setlocalState((prevState) => ({
             ...prevState,
             ...newState,
         }));
@@ -44,17 +46,15 @@ const ReservationMain: React.FC<ReservationMainProps> = ({ movieId, theathreShow
     };
 
     return (
-        shoppingCard
-            ? <ShoppingCard
-                movieId={movieId}
-                theathreShowDateId={theathreShowDateId}
-                selectedSeats={state.selectedSeats || []}
-                firstName={state.firstName || ''}
-                lastName={state.lastName || ''}
-                email={state.email || ''}
+
+        shoppingCard ?
+            <
+                ShoppingCard
                 setShoppingCard={setShoppingCard}
-            />
-            : <Reservation
+
+            /> :
+            <Reservation
+                movieId={movieId}
                 theathreShowDateId={theathreShowDateId}
                 selectedSeats={state.selectedSeats || []}
                 setSelectedSeats={handleSetSelectedSeats}
@@ -66,6 +66,7 @@ const ReservationMain: React.FC<ReservationMainProps> = ({ movieId, theathreShow
                 setEmail={handleSetEmail}
                 setShoppingCard={setShoppingCard}
             />
+
     );
 };
 

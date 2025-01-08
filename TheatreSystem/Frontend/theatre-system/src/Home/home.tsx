@@ -3,6 +3,7 @@ import { HomeState, initHomeState } from "./home.state";
 import { Header } from "../Header/header";
 import Reservation from "../Reservation/Reservation";
 import ReservationMain from "../Reservation/ReservationMain";
+import ShoppingCard from "../ShoppingCart/ShoppingCart";
 
 export class Home extends React.Component<{}, HomeState> {
   constructor(props: {}) {
@@ -19,7 +20,7 @@ export class Home extends React.Component<{}, HomeState> {
     );
   }
 
-  setView = (newView: "Home" | "OverviewShows" | "OverviewVenues" | "Contact" | "Poll") => {
+  setView = (newView: "Home" | "OverviewShows" | "OverviewVenues" | "Contact" | "Poll" | "Shoppingcard") => {
     this.setState(this.state.updateView(newView));
   }
 
@@ -32,9 +33,15 @@ export class Home extends React.Component<{}, HomeState> {
       case "OverviewVenues":
         return <div>This is the Overview Venues page</div>;
       case "Contact":
-        return <ReservationMain movieId={1} theathreShowDateId={1}/>;
+        return <ReservationMain movieId={2} theathreShowDateId={2}/>;
       case "Poll":
         return <div>This is the Poll page</div>;
+      case "Shoppingcard":
+        return <
+          ShoppingCard 
+          setShoppingCard={()=>{}}
+
+          />
       default:
         return <div>Something went wrong</div>;
     }

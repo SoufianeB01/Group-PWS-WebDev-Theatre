@@ -1,7 +1,7 @@
 import React from "react";
 
 type HeaderProps = {
-  setView: (newView: "Home" | "OverviewShows" | "OverviewVenues" | "Contact" | "Poll") => void;
+  setView: (newView: "Home" | "OverviewShows" | "OverviewVenues" | "Contact" | "Poll" | "Shoppingcard") => void;
 };
 
 export const Header: React.FC<HeaderProps> = ({ setView }) => {
@@ -24,6 +24,9 @@ export const Header: React.FC<HeaderProps> = ({ setView }) => {
       </div>
       <div className="header-item" onClick={() => setView("Poll")}>
         Poll
+      </div>
+      <div className="header-item" onClick={() => setView("Shoppingcard")}>
+        Shoppingcard
       </div>
     </div>
   );
