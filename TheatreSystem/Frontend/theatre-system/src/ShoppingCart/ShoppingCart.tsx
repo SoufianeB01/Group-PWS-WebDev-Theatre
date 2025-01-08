@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 interface Seat {
@@ -6,70 +6,56 @@ interface Seat {
     col: number;
 }
 
-interface ShoppingCardProps {
-    selectedSeats: Seat[];
-    firstName: string;
-    lastName: string;
-    email: string;
-    setShoppingCard: (value: boolean) => void;
+interface Reservation {
+    ReservationID: number;
+    CustomerID: number;
+    theatereShowDate: {
+        TheaterShowDateID: number;
+        date: string;
+        time: string;
+        TheaterShowID: number;
+    };
+    tickets: Seat[];
+    amountOfTickets: number;
+    used: boolean;
 }
 
-const ShoppingCard: React.FC<ShoppingCardProps> = ({
-    selectedSeats,
-    firstName,
-    lastName,
-    email,
-    setShoppingCard,
-}) => {
-    const handleConfirm = async () => {
-        // Prepare the request payload
-        const requestData = {
-            Customer: {
-                CustomerId: 2, // You should replace this with the actual customer ID
-                FirstName: firstName,
-                LastName: lastName,
-                Email: email,
-            },
-            Reservation: {
-                ReservationID: 102, // Replace this with the actual reservation ID
-                CustomerID: 3, // Replace this with the actual customer ID
-                TheaterShowDate: {
-                    TheaterShowDateID: 6, // Replace with actual ID
-                    Date: "2024-12-25", // Replace with actual date
-                    Time: "16:00:00", // Replace with actual time
-                    TheaterShowID: 101, // Replace with actual theater show ID
-                },
-                tickets: selectedSeats.map((seat) => ({
-                    row: seat.row,
-                    col: seat.col,
-                })),
-                amountOfTickets: selectedSeats.length,
-                used: false,
-            },
+interface ShoppingCartProps {
+    setShoppingCard: (value: boolean) => void;
+    clearselectedSeats: () => void;
+}
+
+const ShoppingCard: React.FC<ShoppingCartProps> = ({ setShoppingCard, clearselectedSeats }) => {
+    const [data, setData] = useState<Reservation[]>([]);
+
+    useEffect(() => {
+        const fetchSeats = async () => {
+            try {
+                const response = await fetch('/reservation/ShoppingCart');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                setData(await response.json());
+            } catch (error) {
+                console.error('Error fetching reservations:', error);
+            }
         };
 
+        fetchSeats();
+    }, []);
+
+    const handleConfirm = async () => {
         try {
-            // Make the POST request
-            const response = await fetch('https://localhost:5000/reservation/movieId=123', {
+            const response = await fetch('/reservation', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(requestData),
             });
-
             if (!response.ok) {
-                throw new Error('Failed to submit the reservation');
+                throw new Error(`HTTP error! status: ${response.status}`);
             }
-
-            // Handle successful submission
-            alert('Reservation confirmed!');
-            setShoppingCard(false); // Close the shopping card after successful submission
-
+            clearselectedSeats();
+            setShoppingCard(false);
         } catch (error) {
-            // Handle errors
-            console.error('Error:', error);
-            alert('An error occurred while confirming the reservation.');
+            console.error('Error confirming reservations:', error);
         }
     };
 
@@ -77,44 +63,52 @@ const ShoppingCard: React.FC<ShoppingCardProps> = ({
         <div className="container mt-5">
             <div className="card shadow-lg">
                 <div className="card-header bg-primary text-white text-center">
-                    <h2>Order Summary</h2>
+                    <h2>Shopping Cart</h2>
                 </div>
                 <div className="card-body">
-                    {/* Seat Details */}
-                    <div className="mb-4">
-                        <h5 className="card-title">Selected Seats</h5>
-                        {selectedSeats.length > 0 ? (
-                            <div>
-                                {selectedSeats.map((seat, index) => (
-                                    <span
-                                        key={index}
-                                        className="badge bg-secondary me-2 mb-2"
-                                    >
-                                        Row {seat.row}, Col {seat.col}
-                                    </span>
-                                ))}
+                    {data?.length > 0 ? (
+                        data.map((order) => (
+                            <div key={order.ReservationID} className="card mb-3 shadow-sm">
+                                <div className="card-header bg-secondary text-white">
+                                    <h5>
+                                        Reservation ID: {order.ReservationID} - {order.amountOfTickets} Tickets
+                                    </h5>
+                                </div>
+                                <div className="card-body">
+                                    <p>
+                                        <strong>Date:</strong> {order.theatereShowDate.date}{' '}
+                                        <strong>Time:</strong> {order.theatereShowDate.time}
+                                    </p>
+                                    <h6>Seats:</h6>
+                                    {order.tickets.length > 0 ? (
+                                        <div className="d-flex flex-wrap">
+                                            {order.tickets.map((seat, index) => (
+                                                <span
+                                                    key={index}
+                                                    className="badge bg-primary me-2 mb-2"
+                                                >
+                                                    Row {seat.row}, Col {seat.col}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    ) : (
+                                        <p className="text-danger">No seats selected.</p>
+                                    )}
+                                    <p>
+                                        <strong>Used:</strong>{' '}
+                                        {order.used ? (
+                                            <span className="text-success">Yes</span>
+                                        ) : (
+                                            <span className="text-danger">No</span>
+                                        )}
+                                    </p>
+                                </div>
                             </div>
-                        ) : (
-                            <p className="text-danger">No seats selected.</p>
-                        )}
-                    </div>
-
-                    {/* Personal Information */}
-                    <div className="mb-4">
-                        <h5 className="card-title">Personal Information</h5>
-                        <p>
-                            <strong>First Name:</strong> {firstName || <span className="text-danger">Not provided</span>}
-                        </p>
-                        <p>
-                            <strong>Last Name:</strong> {lastName || <span className="text-danger">Not provided</span>}
-                        </p>
-                        <p>
-                            <strong>Email:</strong> {email || <span className="text-danger">Not provided</span>}
-                        </p>
-                    </div>
+                        ))
+                    ) : (
+                        <p className="text-center text-danger">No reservations in the shopping cart.</p>
+                    )}
                 </div>
-
-                {/* Card Footer */}
                 <div className="card-footer text-center">
                     <button
                         className="btn btn-outline-primary me-2"

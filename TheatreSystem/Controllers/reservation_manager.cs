@@ -41,21 +41,21 @@ public class Reservation_managegerController:ControllerBase
     }
 
  
-    [HttpPut("{id}/mark-as-used")]
-    public async Task<IActionResult> MarkAsUsed(Seat seat)
-    {
+    // [HttpPut("{id}/mark-as-used")]
+    // public async Task<IActionResult> MarkAsUsed(Seat seat)
+    // {
         
         
-        if (seat == null) return NotFound();
-        else
-        {
-            var preneeded = new SeatController(_seatService);
-            var needed = await preneeded.ClaimSeat(seat);
+    //     if (seat == null) return NotFound();
+    //     else
+    //     {
+    //         var preneeded = new SeatController(_seatService);
+    //         var needed = await preneeded.ClaimSeat(seat);
         
 
-        return NoContent();
-        }
-    }
+    //     return NoContent();
+    //     }
+    // }
 
  
     [HttpDelete("Delete")]
