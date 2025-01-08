@@ -1,13 +1,13 @@
 public class SeatingPlan
 {
     public int SeatingPlanID { get; set; }
-    public int TheaterShowID { get; set; }
+    public int TheaterShowDateID { get; set; }
     public bool[,] Seats { get; set; }
 
-    public SeatingPlan(int seatingPlanId,int theaterShowID)
+    public SeatingPlan(int seatingPlanId,int theaterShowDateID)
     {
         SeatingPlanID = seatingPlanId;
-        TheaterShowID = theaterShowID;
+        TheaterShowDateID = theaterShowDateID;
         Seats = new bool[10, 10];
         Console.WriteLine("SeatData created");
         // set everyting to true

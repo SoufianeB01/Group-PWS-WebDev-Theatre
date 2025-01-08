@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using TheatreSystem.Models;
 using TheatreSystem.Services;
 
 namespace TheatreSystem.Controllers

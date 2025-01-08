@@ -2,34 +2,33 @@
 public class TheaterShowService : ITheaterShowService
 #pragma warning restore CA1050 // Declare types in namespaces
 {
-    private readonly List<TheaterShow> _shows;
+    private readonly AppDbContext _context;
+
     private readonly List<TheaterShowDate> _showDates;
     private int _nextId;
 
-    public TheaterShowService()
+    public TheaterShowService(AppDbContext context)
     {
+        _context = context;
         var showData = new ShowData();
-        _shows = showData.Shows;
         _showDates = showData.ShowDates;
-        _nextId = _shows.Count + 1;
-    }
+        _nextId = _context.TheaterShows.Count() + 1;}
 
     public List<TheaterShow> GetAllShows()
     {
-        return _shows;
+        return _context.TheaterShows.ToList();
     }
 
     public TheaterShow GetShowById(int id)
     {
-        return _shows.FirstOrDefault(show => show.TheaterShowID == id);
+        return GetAllShows().FirstOrDefault(show => show.TheaterShowID == id);
     }
 
     public async Task CreateShow(TheaterShow show)
     {
         show.TheaterShowID = _nextId++;
-        _shows.Add(show);
-        //hier adden van seating plan
-        
+        _context.TheaterShows.Add(show);
+        _context.SaveChanges();
         await Task.CompletedTask;
     }
 
@@ -42,6 +41,8 @@ public class TheaterShowService : ITheaterShowService
             existingShow.Description = updatedShow.Description;
             existingShow.Price = updatedShow.Price;
             existingShow.VenueID = updatedShow.VenueID;
+
+            _context.SaveChanges();
         }
         await Task.CompletedTask;
     }
@@ -51,7 +52,8 @@ public class TheaterShowService : ITheaterShowService
         var show = GetShowById(id);
         if (show != null)
         {
-            _shows.Remove(show);
+            _context.TheaterShows.Remove(show);
+            _context.SaveChanges();
         }
         await Task.CompletedTask;
     }
@@ -67,7 +69,7 @@ public class TheaterShowService : ITheaterShowService
         string sortBy = "title",
         bool ascending = true)
     {
-        var filteredShows = _shows.ToList();
+        var filteredShows = _context.TheaterShows.ToList();
 
         if (id.HasValue)
         {
