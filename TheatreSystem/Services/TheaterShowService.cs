@@ -1,18 +1,13 @@
-#pragma warning disable CA1050 // Declare types in namespaces
 public class TheaterShowService : ITheaterShowService
-#pragma warning restore CA1050 // Declare types in namespaces
 {
     private readonly AppDbContext _context;
-
-    private readonly List<TheaterShowDate> _showDates;
     private int _nextId;
 
     public TheaterShowService(AppDbContext context)
     {
         _context = context;
-        var showData = new ShowData();
-        _showDates = showData.ShowDates;
-        _nextId = _context.TheaterShows.Count() + 1;}
+        _nextId = _context.TheaterShows.Count() + 1;
+    }
 
     public List<TheaterShow> GetAllShows()
     {
@@ -100,9 +95,9 @@ public class TheaterShowService : ITheaterShowService
 
         if (startDate.HasValue || endDate.HasValue)
         {
-            var showIdsWithMatchingDates = _showDates
-                .Where(date => 
-                    (!startDate.HasValue || DateTime.Parse(date.Date) >= startDate.Value) && 
+            var showIdsWithMatchingDates = _context.TheaterShowDates
+                .Where(date =>
+                    (!startDate.HasValue || DateTime.Parse(date.Date) >= startDate.Value) &&
                     (!endDate.HasValue || DateTime.Parse(date.Date) <= endDate.Value))
                 .Select(date => date.TheaterShowID)
                 .Distinct()
