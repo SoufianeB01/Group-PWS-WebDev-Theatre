@@ -40,7 +40,8 @@ public class ReservationService : IReservationService
         //     return -2;
         // }
         //get theathre from theaterShowDateID
-        var theatre = _context.Theaters.FirstOrDefault(t => t.TheaterID == theaterShowDate.TheaterID);
+        // var theatre = _context.Theaters.FirstOrDefault(t => t.TheaterID == theaterShowDate.TheaterID);
+
 
         // add to shopping cart
         ShoppingCart.Reservations.Add(new Reservation(reservationId, customerId, theaterShowDate, tickets, amountOfTickets, used));
