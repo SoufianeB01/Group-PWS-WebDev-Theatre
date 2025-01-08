@@ -8,7 +8,12 @@ interface Seat {
     col: number;
 }
 
-const ReservationMain: React.FC = () => {
+interface ReservationMainProps {
+    movieId: number,
+    theathreShowDateId: number
+}
+
+const ReservationMain: React.FC<ReservationMainProps> = ({ movieId, theathreShowDateId }) => {
     const [shoppingCard, setShoppingCard] = useState(false);
 
     const [state, setState] = useState<ReservationState>(initReservationState); // op hoger niveau
@@ -41,6 +46,8 @@ const ReservationMain: React.FC = () => {
     return (
         shoppingCard
             ? <ShoppingCard
+                movieId={movieId}
+                theathreShowDateId={theathreShowDateId}
                 selectedSeats={state.selectedSeats || []}
                 firstName={state.firstName || ''}
                 lastName={state.lastName || ''}
@@ -48,6 +55,7 @@ const ReservationMain: React.FC = () => {
                 setShoppingCard={setShoppingCard}
             />
             : <Reservation
+                theathreShowDateId={theathreShowDateId}
                 selectedSeats={state.selectedSeats || []}
                 setSelectedSeats={handleSetSelectedSeats}
                 firstName={state.firstName || ''}

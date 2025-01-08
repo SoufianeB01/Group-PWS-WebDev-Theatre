@@ -7,6 +7,8 @@ interface Seat {
 }
 
 interface ShoppingCardProps {
+    movieId: number,
+    theathreShowDateId: number,
     selectedSeats: Seat[];
     firstName: string;
     lastName: string;
@@ -15,6 +17,8 @@ interface ShoppingCardProps {
 }
 
 const ShoppingCard: React.FC<ShoppingCardProps> = ({
+    movieId,
+    theathreShowDateId,
     selectedSeats,
     firstName,
     lastName,
@@ -25,19 +29,19 @@ const ShoppingCard: React.FC<ShoppingCardProps> = ({
         // Prepare the request payload
         const requestData = {
             Customer: {
-                CustomerId: 2, // You should replace this with the actual customer ID
+                CustomerId: 0, // You should replace this with the actual customer ID
                 FirstName: firstName,
                 LastName: lastName,
                 Email: email,
             },
             Reservation: {
-                ReservationID: 102, // Replace this with the actual reservation ID
-                CustomerID: 3, // Replace this with the actual customer ID
+                ReservationID: 0,
+                CustomerID: 0,
                 TheaterShowDate: {
-                    TheaterShowDateID: 6, // Replace with actual ID
-                    Date: "2024-12-25", // Replace with actual date
-                    Time: "16:00:00", // Replace with actual time
-                    TheaterShowID: 101, // Replace with actual theater show ID
+                    TheaterShowDateID: theathreShowDateId,
+                    Date: "2024-12-25", 
+                    Time: "16:00:00", 
+                    TheaterShowID: movieId,
                 },
                 tickets: selectedSeats.map((seat) => ({
                     row: seat.row,
@@ -50,7 +54,7 @@ const ShoppingCard: React.FC<ShoppingCardProps> = ({
 
         try {
             // Make the POST request
-            const response = await fetch('https://localhost:5000/reservation/movieId=123', {
+            const response = await fetch('https://localhost:5000/reservation', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

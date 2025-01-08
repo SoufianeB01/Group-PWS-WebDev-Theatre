@@ -150,7 +150,7 @@ POST https://localhost:5000/api/auth/logout
 
 
 ###
-POST https://localhost:5000/reservation/2/1 HTTP/1.1
+POST https://localhost:5000/reservation/1/1 HTTP/1.1
 Content-Type: application/json
 
 {

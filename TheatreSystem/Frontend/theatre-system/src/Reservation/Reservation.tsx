@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import InputField from './inputfield';
 
 interface ReservationProps {
+    theathreShowDateId: number,
     selectedSeats: Seat[];
     firstName: string;
     lastName: string;
@@ -19,6 +20,7 @@ interface Seat {
 }
 
 const Reservation: React.FC<ReservationProps> = ({
+    theathreShowDateId,
     selectedSeats,
     firstName,
     lastName,
@@ -38,7 +40,7 @@ const Reservation: React.FC<ReservationProps> = ({
     useEffect(() => {
         const fetchSeats = async () => {
             try {
-                const response = await fetch("/movie/seats/all");
+                const response = await fetch(`/movie/seats/all/${theathreShowDateId}`);
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
