@@ -1,9 +1,39 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { HomeState, initHomeState } from "../Home/home.state";
 import { Header } from "../Header/header";
-import { fetchAllShows, TheaterShow } from "../Admin/EditshowState";
+import { fetchAllShows, TheaterShow, TheaterShowDate } from "../Admin/EditshowState";
 import { fetchFilteredShows, sortAndFilterShows, Show, SortCriteria } from "../Sort";
-
+import ReservationMain from "../Reservation/ReservationMain";
+import Reservation from "../Reservation/Reservation";
+import { Seat,ReservationProps } from "./overviewshows.state";
+import{ getFilteredShowDates} from"./overviewshows.state"
+import { __String } from "typescript";
+const [showDates, setShowDates] = useState<TheaterShowDate[]>([]);
+    
+const [filter, setFilter] = useState({
+      id: 0,
+      date: '',
+      time: '',
+      theaterShowId: 0,
+      sortBy: 'date',
+      ascending: true,
+    });
+  
+    const fetchShowDates = async () => {
+      try {
+        const data = await getFilteredShowDates(
+          filter.id,
+          filter.date,
+          filter.time,
+          filter.theaterShowId,
+          filter.sortBy,
+          filter.ascending
+        );
+        setShowDates(data);
+      } catch (error) {
+        console.error('Error fetching show dates:', error);
+      }
+    };
 
 const loadTheaterShows = async () => {
   try {
@@ -13,7 +43,7 @@ const loadTheaterShows = async () => {
     console.error('Error fetching shows:', error);
   }
 };
-
+const [showReservation, setShowReservation] = useState(false);
 useEffect(() => {
   loadTheaterShows();
 }, []); 
@@ -51,7 +81,10 @@ const [shows, setShows] = useState<Show[]>([]);
       setLoading(false);
     }
   };
-
+  
+  useEffect(() => {
+    fetchShowDates();
+  }, [filters]);
 export class OverviewShows extends React.Component<{}, HomeState> {
   constructor(props: {}) {
     super(props);
@@ -61,6 +94,7 @@ export class OverviewShows extends React.Component<{}, HomeState> {
       username: null,
     };
   }
+
   handleLogout = () => {
     this.setState({ isLoggedIn: false, username: null });
   };
@@ -79,11 +113,23 @@ export class OverviewShows extends React.Component<{}, HomeState> {
     );
   }
 
+ 
+
   setView = (newView: "Home" | "OverviewShows" | "OverviewVenues" | "Contact" | "Poll" | "Login") => {
     this.setState(this.state.updateView(newView));
   };
+  prop = <Reservation theathreShowDateId={0} movieId={0} selectedSeats={[]} firstName={""} lastName={""} email={""} setEmail={function (email: string): void {
+    throw new Error("Function not implemented.");
+  } } setLastName={function (lastName: string): void {
+    throw new Error("Function not implemented.");
+  } } setFirstName={function (firstName: string): void {
+    throw new Error("Function not implemented.");
+  } } setSelectedSeats={function (seats: Seat[]): void {
+    throw new Error("Function not implemented.");
+  } }>
+  </Reservation>
   
-  
+  showing=fetchAllShows(); 
   renderContent(): JSX.Element {
     return (
 <div>
@@ -178,6 +224,15 @@ export class OverviewShows extends React.Component<{}, HomeState> {
               <li key={show.TheaterShowID}>
                 <h2>{show.Title}</h2>
                 <p>{show.Description}</p>
+                <li key = {this.prop.key}>
+                {showReservation ? (
+                <ReservationMain movieId={show.TheaterShowID} theathreShowDateId={456} />
+            ) : (
+                <button onClick={() => this.rendersecondcontent(show) }>
+                    make reservation
+                </button>
+            )}
+                </li>
               </li>
             ))}
           </ul>
@@ -187,4 +242,80 @@ export class OverviewShows extends React.Component<{}, HomeState> {
       </div>
       </div>
     )}
-}
+
+rendersecondcontent(showw:Show): JSX.Element {
+  return (
+    <div>
+      <h1>Filterable Theater Show Dates</h1>
+      <div>
+        <label>
+          ID:
+          <input
+            type="number"
+            value={filter.id}
+            onChange={(e) => setFilter({ ...filter, id :Number(e.target.value )})}
+          />
+        </label>
+        <label>
+          Date:
+          <input
+            type="date"
+            value={filter.date}
+            onChange={(e) => setFilter({ ...filter, date: e.target.value })}
+          />
+        </label>
+        <label>
+          Time:
+          <input
+            type="time"
+            value={filter.time}
+            onChange={(e) => setFilter({ ...filter, time: e.target.value })}
+          />
+        </label>
+        <label>
+          Theater Show ID:
+          <input
+            type="number"
+            value={filter.theaterShowId || ''}
+            onChange={(e) => setFilter({ ...filter, theaterShowId:Number (e.target.value) })}
+          />
+        </label>
+        <label>
+          Sort By:
+          <select
+            value={filter.sortBy}
+            onChange={(e) => setFilter({ ...filter, sortBy: e.target.value })}
+          >
+            <option value="date">Date</option>
+            <option value="time">Time</option>
+            <option value="theaterShowId">Theater Show ID</option>
+          </select>
+        </label>
+        <label>
+          Ascending:
+          <input
+            type="checkbox"
+            checked={filter.ascending}
+            onChange={(e) => setFilter({ ...filter, ascending: e.target.checked })}
+          />
+        </label>
+        <button onClick={fetchShowDates}>Fetch Show Dates</button>
+      </div>
+      <ul>
+        {showDates.map((show) => (
+          <li key={show.TheaterShowDateID}>
+            {show.Date} - {show.Time} (Show ID: {show.TheathershowID})
+            <div>
+            {showReservation ? (
+                <ReservationMain movieId={showw.TheaterShowID} theathreShowDateId={show.TheaterShowDateID} />
+            ) : (
+                <button onClick={() => setShowReservation(true)}>
+                    Open Reservation
+                </button>
+            )}
+        </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );}}
