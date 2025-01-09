@@ -1,4 +1,5 @@
 import React, { ChangeEventHandler, useEffect, useState } from "react";
+import { Alert } from "react-bootstrap";
 import { propTypes } from "react-bootstrap/esm/Image";
 
 
@@ -10,6 +11,21 @@ export type TheaterShow = {
     Price: number;
     VenueID: number;
   };
+  export type Reservation = {
+    ReservationID: number;
+    CustomerID: number;
+    amountOfTickets: number;
+    Theathershowdate:TheaterShowDate;
+    used: boolean;
+    VenueID: number;
+  };
+  export type TheaterShowDate = 
+  {
+    TheaterShowDateID: number;
+    Date: string;
+    Time: string;
+    TheathershowID: number;
+  }
 
 export type TheaterShowFormProps = {
     initialData?: TheaterShow;
@@ -34,17 +50,19 @@ export const fetchAllShows = async () => {
     Price: Number;
     VenueId: number;
   }
-  export type ViewState = "home" | "registration" | "overview";
+
   
 
 export type ShowEntry = Show & { id: number };
 export const Delete = async (reservationId:number) => 
     {
+        
         if (reservationId === null) {
             alert("Please enter a reservation ID.");
             return;
           }
-        
+          confirm("are you sure you wish to delete this show")
+
           try {
             const response = await fetch(`/api/Reservations/Delete?id=${reservationId}`, {
               method: "DELETE",
@@ -82,3 +100,40 @@ export const registration = async (newShow:TheaterShow) =>
           }
     
     }
+    export const edtitation = async (newShow:TheaterShow) => 
+        {
+            try {
+                const response = await fetch(`/api/TheaterShows/${newShow.TheaterShowID}`, {
+                  method: "PUT",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify(newShow),
+                });
+            
+                if (!response.ok) {
+                  throw new Error("Failed to create show");
+                }
+            
+                const data = await response.json();
+                console.log("Show created:", data);
+                alert("Show created successfully!");
+              } catch (error) {
+                console.error("Error creating show:", error);
+                alert("Failed to create the show.");
+              }
+        
+        }
+
+    export const fetchallreservations = async () => {
+        try {
+          const response = await fetch("reservation"); 
+          if (!response.ok) {
+            throw new Error('Failed to reservations shows');
+          }
+          return await response.json(); 
+        } catch (error) {
+          console.error('Error fetching reservations:', error);
+          throw error;
+        }
+      };
