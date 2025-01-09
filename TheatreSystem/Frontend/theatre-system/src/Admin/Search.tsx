@@ -1,6 +1,7 @@
 import { ChangeEventHandler, useEffect, useState } from "react";
 import styles from "./Search.module.css";
 import SearchBar from "./Searchbar";
+import { TheaterShow,Show } from "./EditshowState";
 
 
 interface searchData {
@@ -9,7 +10,7 @@ interface searchData {
 }
 
 const Search = () => {
-    const [contentData, setContentData] = useState<searchData[]>([]);
+    const [contentData, setContentData] = useState<Show[]>([]);
     const [searchContentData, setSearchContentData] = useState<string>('');
     const [searchDataErr, setSearchDataErr] = useState<boolean>(false);
 
@@ -47,12 +48,12 @@ const Search = () => {
                 {searchDataErr && <h1 className={styles.errorMsg}>Error loading data, please check URL or console for more details!</h1>}
                 <ul>
                     {
-                        contentData.filter(person =>
-                            person.firstName.toLowerCase().startsWith(searchContentData.toLowerCase()) ||
-                            person.lastName.toLowerCase().startsWith(searchContentData.toLowerCase()) ||
-                            (`${person.firstName} ${person.lastName}`).toLowerCase().startsWith(searchContentData.toLowerCase())
+                        contentData.filter(Show =>
+                            Show.Title.toLowerCase().startsWith(searchContentData.toLowerCase()) ||
+                            Show.Description.toLowerCase().startsWith(searchContentData.toLowerCase()) ||
+                            (`${Show.Title} ${Show.Description}`).toLowerCase().startsWith(searchContentData.toLowerCase())
 
-                        ).map((person, index) => <li key={index}>{person.firstName} {person.lastName}</li>)
+                        ).map((Show, index) => <li key={index}>{Show.Title} {Show.Description}</li>)
                     }
                 </ul>
             </div>

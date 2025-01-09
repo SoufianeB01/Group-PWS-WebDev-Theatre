@@ -1,6 +1,6 @@
 import React, { ChangeEventHandler, useEffect, useState } from "react";
 import { propTypes } from "react-bootstrap/esm/Image";
-import {fetchAllShows, TheaterShow,TheaterShowFormProps,ShowEntry,Show,Delete} from "./EditshowState";
+import {fetchAllShows, TheaterShow,TheaterShowFormProps,ShowEntry,Show,Delete, fetchallreservations, Reservation,edtitation} from "./EditshowState";
 
 
 const TheaterShowForm: React.FC<TheaterShowFormProps> = ({
@@ -104,9 +104,10 @@ const handleSubmit = (e: React.FormEvent) => {
   
   
   const Overview: React.FC = () => {
+    
     const [shows, setShows] = useState<TheaterShow[]>([]);
     const [selectedShow, setSelectedShow] = useState<TheaterShow | null>(null);
-    const [reservations, setReservations] = useState<any[]>([]);
+    const [reservations, setReservations] = useState<Reservation[]>([]);
     const handleEdit = (show: TheaterShow) => {
       setSelectedShow(show);
     };
@@ -118,17 +119,26 @@ const handleSubmit = (e: React.FormEvent) => {
         console.error('Error fetching shows:', error);
       }
     };
-  
+    const loadReservations = async () => {
+      try {
+        const Reservations = await fetchallreservations(); 
+        setReservations(Reservations); 
+      } catch (error) {
+        console.error('Error fetching shows:', error);
+      }
+    };
     const handleFormSubmit = (updatedShow: TheaterShow) => {
       setShows((prevShows) =>
         prevShows.map((show) =>
           show.TheaterShowID === updatedShow.TheaterShowID ? updatedShow : show
         )
       );
+      edtitation(updatedShow)
       setSelectedShow(null);
     };
     useEffect(() => {
       loadTheaterShows();
+      loadReservations();
     }, []); 
     return (
       <div>
@@ -159,8 +169,12 @@ const handleSubmit = (e: React.FormEvent) => {
         <h1>Reservations</h1>
         {reservations.length > 0 ? (
           <ul>
-            {reservations.map((reservation, index) => (
-              <li key={index}>
+            {reservations.map((reservation) => (
+              <li key={reservation.ReservationID}>
+                <h2>CustomerID:{reservation.CustomerID}</h2>
+                <h2>used:{reservation.used}</h2>
+                <h2>time:{reservation.Theathershowdate.Time}</h2>
+                <h2>date:{reservation.Theathershowdate.Date}</h2>
                 <pre>{JSON.stringify(reservation, null, 2)}</pre>
               </li>
             ))}
