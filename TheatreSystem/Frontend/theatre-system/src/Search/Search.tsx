@@ -46,7 +46,7 @@ const initHomeState: HomeState = {
   updateView: (newView: ViewState) => (currentState: HomeState) => initHomeState
 };
 
-export class search extends React.Component<{}, HomeState> {
+export class Search extends React.Component<{}, HomeState> {
   constructor(props: {}) {
     super(props);
     this.state = {
@@ -219,6 +219,6 @@ export class search extends React.Component<{}, HomeState> {
 }
 
 
-export default search;
+export default Search;
 
 
