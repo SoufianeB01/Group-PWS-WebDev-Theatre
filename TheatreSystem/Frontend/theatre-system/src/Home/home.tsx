@@ -4,6 +4,7 @@ import { Header } from "../Header/header";
 import { Login } from "../Login/login";
 import Reservation from "../Reservation/Reservation";
 import ReservationMain from "../Reservation/ReservationMain";
+import OverviewShows from "../OverviewShows/overviewshows";
 
 export class Home extends React.Component<{}, HomeState> {
   constructor(props: {}) {
@@ -41,7 +42,7 @@ export class Home extends React.Component<{}, HomeState> {
       case "Home":
         return <div>This is the Home page</div>;
       case "OverviewShows":
-        return <div>This is the Overview Shows page</div>;
+        return <OverviewShows/>;
       case "OverviewVenues":
         return <div>This is the Overview Venues page</div>;
       case "Contact":
