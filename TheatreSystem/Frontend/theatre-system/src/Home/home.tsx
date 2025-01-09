@@ -5,6 +5,7 @@ import { Login } from "../Login/login";
 import Reservation from "../Reservation/Reservation";
 import ReservationMain from "../Reservation/ReservationMain";
 import OverviewShows from "../OverviewShows/overviewshows";
+import Search from "../Admin/Search";
 
 export class Home extends React.Component<{}, HomeState> {
   constructor(props: {}) {
@@ -48,10 +49,11 @@ export class Home extends React.Component<{}, HomeState> {
       case "Contact":
         return <ReservationMain movieId={2} theathreShowDateId={2} />;
       case "Poll":
-        return <div>This is the Poll page</div>;
+        return <Search/>;
         
       case "Login":
         return <Login />;
+      
       default:
         return <div>Something went wrong</div>;
     }
