@@ -61,7 +61,7 @@ export const Delete = async (reservationId:number) =>
             alert("Please enter a reservation ID.");
             return;
           }
-          confirm("are you sure you wish to delete this show")
+         
 
           try {
             const response = await fetch(`/api/Reservations/Delete?id=${reservationId}`, {

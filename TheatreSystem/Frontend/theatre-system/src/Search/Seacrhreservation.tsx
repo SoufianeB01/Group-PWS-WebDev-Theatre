@@ -50,7 +50,7 @@ export const fetchAllReservations = async (): Promise<Reservation[]> => {
   }
 };
 
-export class OverviewReservations extends React.Component<{}, HomeState> {
+export class SearchReservation extends React.Component<{}, HomeState> {
   constructor(props: {}) {
     super(props);
     this.state = {
